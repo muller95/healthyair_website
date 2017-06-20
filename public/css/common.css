@@ -1,0 +1,13 @@
+body {
+    background-color: #EFEFEF;
+}
+
+.first-input {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.last-input {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}

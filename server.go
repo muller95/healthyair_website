@@ -15,7 +15,7 @@ func requestHandler(ctx *fasthttp.RequestCtx) {
 		break
 
 	case "/register":
-		fmt.Println("register()")
+		ctx.SendFile("public/views/register.html")
 		break
 
 	case "/register/enter":
@@ -27,11 +27,14 @@ func requestHandler(ctx *fasthttp.RequestCtx) {
 		break
 
 	default:
-		fmt.Println("bad_gateway()")
+		fasthttp.FSHandler("public/", 0)(ctx)
+
+		// default:
+		// fmt.Println("bad_gateway()")
 	}
 }
 func main() {
-	err := fasthttp.ListenAndServe("127.0.0.1:80", requestHandler)
+	err := fasthttp.ListenAndServe("0.0.0.0:80", requestHandler)
 	if err != nil {
 		log.Fatal("@ERR ON STARTUP WEBSERVER ", err)
 	}
