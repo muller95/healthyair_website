@@ -4,7 +4,7 @@ USE healthyair;
 
 CREATE TABLE users (
 	id INT PRIMARY KEY AUTO_INCREMENT,
-	name text,
+	email text,
 	passwd text
 ); 
 

@@ -7,31 +7,38 @@ import (
 
 	"strings"
 
+	"net"
+
+	//"database/sql"
+
 	"github.com/valyala/fasthttp"
+	//_ "github.com/go-sql-driver/mysql"
 )
 
 //func send_to_mysql()
 
-func registerEnter(ctx *fasthttp.RequestCtx) {
+func registerEnter(ctx *fasthttp.RequestCtx, conn net.Conn) {
+	var email, passwd string
+	var err error
+
 	if ctx.IsPost() {
 		pbody := string(ctx.PostBody())
 		fmt.Println(string(pbody))
-		//request must contains 5 args(name, email, login, password, confirm_password)
-		for i := 0; i < 4; i++ { //parsing first 4 args...
-			if strings.Contains(pbody, "&") {
-				name := pbody[:strings.Index(pbody, "=")]
-				filling := pbody[strings.Index(pbody, "=")+1 : strings.Index(pbody, "&")]
-				//HERE need to send info to mysql
-				pbody = strings.TrimPrefix(pbody, pbody[:strings.Index(pbody, "&")+1])
-				fmt.Println("name = " + name + " | " + "filling = " + filling)
-			}
+		//request must contains 2 args(email, password)
+		if strings.Contains(pbody, "&") {
+			email = pbody[strings.Index(pbody, "=")+1 : strings.Index(pbody, "&")]
+			pbody = strings.TrimPrefix(pbody, pbody[:strings.Index(pbody, "&")+1])
 		}
-		//parsing last arg
-		name := pbody[:strings.Index(pbody, "=")]
-		filling := pbody[strings.Index(pbody, "=")+1:]
-		//HERE need to send info to mysql
+		passwd = pbody[strings.Index(pbody, "=")+1:]
 
-		fmt.Println("name = " + name + " | " + "filling = " + filling)
+		_, err = dbConn.Prepare("INSERT INTO users (email, passwd) VALUES (?, ?)")
+		if err != nil {
+			log.Fatal("@ERR ON PREPARING STMT: 'INSERT INTO users (email, passwd) VALUES (?, ?)'")
+		}
+		_, err = dbConn.Exec(email, passwd)
+		if err != nil {
+			log.Fatal("@ERR ON EXECUTING STMT: 'INSERT INTO users (email, passwd) VALUES (?, ?)'")
+		}
 	} else {
 		log.Fatal("@ERR ON METHOD-REQUEST")
 	}
