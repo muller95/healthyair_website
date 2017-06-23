@@ -5,26 +5,68 @@
 	<title>Register</title>
     <link rel="stylesheet" type="text/css" href="/css/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/common.css">
+	<script src="/scripts/jquery-3.2.1.min.js"></script>
+	<script>
+
+		$(document).ready( function() {
+			/*$("#name").on("input", function() {
+				if ($("#name").val().length > 0) {
+					$("#name-div").removeClass("has-danger");
+					$("#name").removeClass("form-control-danger");
+					$("#name-div").addClass("has-success");
+					$("#name").addClass("form-control-success");
+					$("#name-error").addClass("collapse");
+				} else {
+					$("#name-div").removeClass("has-success");
+					$("#name").removeClass("form-control-success");
+					$("#name-error").removeClass("collapse");
+					$("#name-div").addClass("has-danger");
+					$("#name").addClass("form-control-danger");
+				}
+			});*/
+			$("#register").click(function() {
+				alert($("#reg-form").validate());
+			});
+		});
+	</script>
     <body bgcolor>
         
 		<div class="container">
 			<div class="row">
-				<div class="offset-lg-4 col-lg-4">
+				<div class="offset-md-2 col-md-8 offset-lg-4 col-lg-4">
 					<div class="card">
 						<div class="row">
-							<div class="offset-lg-2 col-lg-8">
+							<div class="offset-2 col-8">
 								<img src="/images/logo.png" style="width:100%; display:block; margin-top:5%"/>
 							</div>
 
-							<div class="offset-lg-1 col-lg-10" style="margin-top:5%">
-								<form>							
-									<label for="email" class="sr-only">Email</label>
-									<input type="email" id="email" class="form-control first-input" placeholder="Email" autofocus>
-									<label for="password" class="sr-only">Password</label>
-									<input type="password" id="password" class="form-control last-input" placeholder="Password">	
+							<div class="offset-1 col-10" style="margin-top:5%">
+								<form id="reg-form">
+									<div id="name-div">		
+										<label class="sr-only" for="name">Name:</label>
+										<input type="name" id="name" class="form-control first-control" placeholder="Name" autofocus>
+										<div id="name-error" class="col-12 form-control-feedback collapse">Input your name please</div>
+									</div>
 									
+									<div id="email-div">		
+										<label class="sr-only" for="email">Email:</label>
+										<input type="email" id="email" class="form-control middle-control" placeholder="Email" autofocus>
+										<div id="email-error" class="col-12 form-control-feedback collapse">Input your email please</div>
+									</div>
 									
-									<button type="button" class="btn btn-success" style="margin-top:5%; width:100%">Register</button>
+									<div id="password-div">		
+										<label class="sr-only" for="password">Password:</label>
+										<input type="password" id="password" class="form-control middle-control" placeholder="password" autofocus>
+										<div id="password-error" class="col-12 form-control-feedback collapse">Input your password please</div>
+									</div>
+
+									<div id="password-again-div">		
+										<label class="sr-only" for="password-again">Password again:</label>
+										<input type="password" id="password-again" class="form-control" placeholder="Password again" autofocus>
+										<div id="password-error" class="col-12 form-control-feedback collapse">Input your password again please</div>
+									</div>
+
+									<button id="register" type="button" class="btn btn-success" style="margin-top:5%; width:100%">Register</button>
 									<button type="button" class="btn btn-secondary" style="margin-top:5%; width:100%">Cancel</button>
 									
 								</form>

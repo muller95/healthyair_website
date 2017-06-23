@@ -1,3 +1,5 @@
+DROP DATABASE healthyair;
+
 CREATE DATABASE healthyair CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 USE healthyair;
@@ -5,7 +7,8 @@ USE healthyair;
 CREATE TABLE users (
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	email text,
-	passwd text
+	passwd text,
+	name text
 ); 
 
 CREATE TABLE stations (
