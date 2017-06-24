@@ -25,7 +25,12 @@
 				}
 			});*/
 			$("#register").click(function() {
-				alert($("#reg-form").validate());
+				$.post(
+					"/register/enter", {email: $("#email").val(), name: $("#name").val(), 
+					password: $("#password").val()
+				}, function(data) {
+					alert('dsdfsdf');
+				});
 			});
 		});
 	</script>
