@@ -7,17 +7,13 @@ import (
 
 	"strings"
 
-	"net"
-
-	//"database/sql"
-
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/valyala/fasthttp"
-	//_ "github.com/go-sql-driver/mysql"
 )
 
 //func send_to_mysql()
 
-func registerEnter(ctx *fasthttp.RequestCtx, conn net.Conn) {
+func registerEnter(ctx *fasthttp.RequestCtx) {
 	var email, passwd string
 	var err error
 
