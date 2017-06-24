@@ -2,12 +2,20 @@ body {
     background-color: #EFEFEF;
 }
 
-.first-input {
+.first-control {
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
 }
 
-.last-input {
+.middle-control {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.last-control {
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
 }
+
