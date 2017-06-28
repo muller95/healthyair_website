@@ -50,9 +50,6 @@ shapI5224UYfNtBAzSS44jbeM3lBjhWpQvFl3csCddM=
 //var listener net.Listener
 
 func requestHandler(ctx *fasthttp.RequestCtx) {
-	//var conn net.Conn
-	//var err error
-	log.Println("request")
 	language := "en"
 	acceptLanguages := strings.Split(string(ctx.Request.Header.Peek("Accept-Language")), ";")
 	if len(acceptLanguages) > 0 {
@@ -118,40 +115,44 @@ func initResources() {
 
 func main() {
 	var err error
-	/*healthyairSQLport = os.Getenv("HEALTHYAIR_SQL_PORT")
-	if healthyairSQLport == "" {
-		log.Fatal("@HEALTHYAIR_SQL_PORT IS NOT SET")
-	}*/
-
 	initResources()
 
 	healthyairSQLuser = os.Getenv("HEALTHYAIR_SQL_USER")
 	if healthyairSQLuser == "" {
-		log.Fatal("@HEALTHYAIR_SQL_USER IS NOT SET")
+		log.Fatal("Err: HEALTHYAIR_SQL_USER is not set")
 	}
 	healthyairSQLpassword = os.Getenv("HEALTHYAIR_SQL_PASSWORD")
 	if healthyairSQLpassword == "" {
-		log.Fatal("@HEALTHYAIR_SQL_PASSWORD IS NOT SET")
+		log.Fatal("Err: HEALTHYAIR_SQL_PASSWORD is not set")
 	}
+
+	certificatePath := os.Getenv("HEALTHYAIR_CERTIFICATE_PATH")
+	if certificatePath == "" {
+		log.Fatal("Err: HEALTHYAIR_CERTIFICATE_PATH is not set")
+	}
+	keyPath := os.Getenv("HEALTHYAIR_KEY_PATH")
+	if keyPath == "" {
+		log.Fatal("Err: HEALTHYAIR_KEY_PATH is not set")
+	}
+
+	serverPort := os.Getenv("HEALTHYAIR_SERVER_PORT")
+	if serverPort == "" {
+		log.Fatal("Err: HEALTHYAIR_SERVER_PORT is not set")
+	}
+
 	dbConn, err = sql.Open("mysql", fmt.Sprintf("%s:%s@/healthyair?charset=utf8", healthyairSQLuser,
 		healthyairSQLpassword))
+	defer dbConn.Close()
+
 	if err != nil {
-		log.Fatal("@ERR ON OPENING DATABASE", err)
+		log.Fatal("Err on open database: ", err)
 	}
-	/*_, err = dbConn.Exec("SET CHARSET utf8")
-	if err != nil {
-		log.Fatal("@ERR ON SETTING CHARSET: ", err)
-	}*/
-	/*listener, err = net.Listen("tcp", ":"+healthyairSQLport)
-	if err != nil {
-		log.Fatal("@ERR ON STARTING LISTENING PORT: ", err)
-	}*/
 
 	// err = fasthttp.ListenAndServe("0.0.0.0:80", requestHandler)
-	err = fasthttp.ListenAndServeTLS(":8080", "ssl_cert/server.crt", "ssl_cert/server.key",
+	err = fasthttp.ListenAndServeTLS(":"+serverPort, certificatePath, keyPath,
 		requestHandler)
 	if err != nil {
-		log.Fatal("@ERR ON STARTUP WEBSERVER ", err)
+		log.Fatal("Err on startup server: ", err)
 	}
-	dbConn.Close()
+
 }
