@@ -1,43 +1,43 @@
 <html>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>{{.Registration}}</title>
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/css/common.css">
-	<script src="/scripts/jquery-3.2.1.min.js"></script>
-	<script src="/scripts/jquery.validate.min.js"></script>
-	<script>
-		$(document).ready( function() {
-			var reg_form = $("#reg-form");
-			/*$("#name").on("input", function() {
-				if ($("#name").val().length > 0) {
-					$("#name-div").removeClass("has-danger");
-					$("#name").removeClass("form-control-danger");
-					$("#name-div").addClass("has-success");
-					$("#name").addClass("form-control-success");
-					$("#name-error").addClass("collapse");
-				} else {
-					$("#name-div").removeClass("has-success");
-					$("#name").removeClass("form-control-success");
-					$("#name-error").removeClass("collapse");
-					$("#name-div").addClass("has-danger");
-					$("#name").addClass("form-control-danger");
-				}
-			});*/
-			$("#register").click(function() {
-				$.post(
-					"/register/enter", {email: $("#email").val(), name: $("#name").val(), 
-					password: $("#password").val()
-				}, function(data) {
-					alert('dsdfsdf');
+		<title>{{.Registration}}</title>
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/css/common.css">
+		<script src="/scripts/jquery-3.2.1.min.js"></script>
+		<script>
+			$(document).ready( function() {
+				var reg_form = $("#reg-form");
+				/*$("#name").on("input", function() {
+					if ($("#name").val().length > 0) {
+						$("#name-div").removeClass("has-danger");
+						$("#name").removeClass("form-control-danger");
+						$("#name-div").addClass("has-success");
+						$("#name").addClass("form-control-success");
+						$("#name-error").addClass("collapse");
+					} else {
+						$("#name-div").removeClass("has-success");
+						$("#name").removeClass("form-control-success");
+						$("#name-error").removeClass("collapse");
+						$("#name-div").addClass("has-danger");
+						$("#name").addClass("form-control-danger");
+					}
+				});*/
+				$("#register").click(function() {
+					$.post(
+						"/register/enter", {email: $("#email").val(), name: $("#name").val(), 
+						password: $("#password").val()
+					}, function(data) {
+						alert('dsdfsdf');
+					});
+					alert(reg_form.valid());
 				});
-				alert(reg_form.valid());
 			});
-		});
-	</script>
-    <body bgcolor>
-        
+		</script>
+	</head>
+    <body>
 		<div class="container">
 			<div class="row">
 				<div class="offset-md-2 col-md-8 offset-lg-4 col-lg-4">

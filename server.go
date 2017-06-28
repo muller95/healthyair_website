@@ -61,7 +61,7 @@ func requestHandler(ctx *fasthttp.RequestCtx) {
 
 	switch string(ctx.Path()[:]) {
 	case "/":
-		fmt.Println("index()")
+		mainPage(ctx, language)
 		break
 
 	case "/register":
@@ -111,6 +111,21 @@ func initResources() {
 
 	languageResources["en"]["Name"] = "Name"
 	languageResources["ru"]["Name"] = "Имя"
+
+	languageResources["en"]["MainPage"] = "Main page"
+	languageResources["ru"]["MainPage"] = "Главная страница"
+
+	languageResources["en"]["Main"] = "Main"
+	languageResources["ru"]["Main"] = "Главная"
+
+	languageResources["en"]["Buy"] = "Buy"
+	languageResources["ru"]["Buy"] = "Купить"
+
+	languageResources["en"]["AboutUs"] = "About us"
+	languageResources["ru"]["AboutUs"] = "О нас"
+
+	languageResources["en"]["Contacts"] = "Contacs"
+	languageResources["ru"]["Contacts"] = "Контакты"
 }
 
 func main() {
