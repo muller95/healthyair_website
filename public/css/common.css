@@ -19,3 +19,20 @@ body {
     border-top-right-radius: 0px;
 }
 
+.active-link {
+    margin-top:5%;
+    border-bottom:7px solid #4592f7;
+    min-height: 100px;
+}
+
+.simple-link {
+    margin-top:5%;
+     border-bottom:7px solid transparent;
+    min-height: 100px;
+}
+
+.active-link-sm {
+    border-bottom:3px solid #4592f7;
+}
+
+

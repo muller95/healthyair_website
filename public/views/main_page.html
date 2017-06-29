@@ -8,9 +8,36 @@
         <link rel="stylesheet" type="text/css" href="/css/common.css">
         <script src="/scripts/jquery-3.2.1.min.js"></script>
         <script src="/css/bootstrap/js/bootstrap.min.js"></script>
+        <script>
+            $(document).ready( function() {
+                $('a[data-menu-size="big"]').click(function(event) {
+                    var clicked$ = $(event.target.parentElement);
+                    var sm_link$ = $(clicked$.attr("data-link-sm"));
+                     $(".active-link-sm").removeClass("active-link-sm").removeClass("active");
+                    sm_link$.addClass("active-link-sm");
+                    sm_link$.addClass("active")
+                    $(".active-link").removeClass("active-link").addClass("simple-link").removeClass("active");
+                    clicked$.removeClass("simple-link");
+                    clicked$.addClass("active-link");
+                    clicked$.addClass("active");
+				});
+
+                $('a[data-menu-size="small"]').click(function(event) {
+                    var clicked$ = $(event.target.parentElement);
+                    var big_link$ = $(clicked$.attr("data-link-big"));
+                    $(".active-link").removeClass("active-link").removeClass("active").addClass("simple-link");
+                    big_link$.removeClass("simple-link");
+                    big_link$.addClass("active-link");
+                    big_link$.addClass("active");
+                    $(".active-link-sm").removeClass("active-link-sm").removeClass("active");
+                    clicked$.addClass("active-link-sm");
+                    clicked$.addClass("active");
+				});
+            });
+        </script>
     </head>
     <body>
-        <div class="container-fluid">
+        <div class="container">
             {{.Navbar}}
         </div>
     </body>

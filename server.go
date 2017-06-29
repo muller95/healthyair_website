@@ -124,7 +124,7 @@ func initResources() {
 	languageResources["en"]["AboutUs"] = "About us"
 	languageResources["ru"]["AboutUs"] = "О нас"
 
-	languageResources["en"]["Contacts"] = "Contacs"
+	languageResources["en"]["Contacts"] = "Contacts"
 	languageResources["ru"]["Contacts"] = "Контакты"
 }
 
