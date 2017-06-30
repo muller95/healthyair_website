@@ -35,4 +35,14 @@ body {
     border-bottom:3px solid #4592f7;
 }
 
+body {
+    padding-top:15rem
+}
+
+.carousel-item.active,
+.carousel-item-next,
+.carousel-item-prev {
+    display: block
+}
+
 
