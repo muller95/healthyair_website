@@ -17,8 +17,9 @@ type Navbar struct {
 }
 
 type MainPage struct {
-	MainPage string
-	Navbar   template.HTML
+	MainPage     string
+	Navbar       template.HTML
+	MainPageText string
 }
 
 func executeNavbar(resources map[string]string) template.HTML {
@@ -55,6 +56,7 @@ func mainPage(ctx *fasthttp.RequestCtx, language string) {
 
 	mainPage.MainPage = resources["MainPage"]
 	mainPage.Navbar = executeNavbar(resources)
+	mainPage.MainPageText = resources["MainPageText"]
 
 	registerTemplate, err := template.ParseFiles("public/views/main_page.html")
 	if err != nil {

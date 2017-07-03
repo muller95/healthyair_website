@@ -34,10 +34,10 @@ func Register(name string, provider Provider) {
 }
 
 func createSessID() uuid.UUID {
-	HAuuid, err := uuid.NewRandom()
+	HAuuid, _ := uuid.NewRandom()
 	return HAuuid
 }
 
-func SessionStart() Session {
+/*func SessionStart() Session {
 
-}
+}*/

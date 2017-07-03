@@ -1417,7 +1417,7 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .carousel { position: relative; }
 
-.carousel-inner { position: relative; width: 100%; overflow: hidden; }
+.carousel-inner { position: relative; width: 100%; overflow: hidden; margin-bottom: 50px; }
 
 .carousel-item { position: relative; display: none; width: 100%; }
 @media (-webkit-transform-3d) { .carousel-item { transition: transform 0.6s ease-in-out; backface-visibility: hidden; perspective: 1000px; } }

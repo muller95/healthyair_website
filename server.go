@@ -126,6 +126,19 @@ func initResources() {
 
 	languageResources["en"]["Contacts"] = "Contacts"
 	languageResources["ru"]["Contacts"] = "Контакты"
+
+	languageResources["en"]["MainPageText"] = `
+	Healthy Air project provides you a new room weather station. It measures humidity,
+	temperature and carbon dioxide concentration in your room. Its uniqueness lies in the fact that it
+	collects all data on the webserver and you can monitor data from several meteostations,
+	also it gives you some advices to make air in the room better.
+	`
+	languageResources["ru"]["MainPageText"] = `
+	Проект Healthy Air представляет вам новую комнатную метеостанцию. Она измеряет влажность, 
+	температуру и концентрацию углекислого газа в вашей комнате. Её уникальность состоит в том,
+	что она собирает все данные на сервере, и вы можете отслеживать данные с нескольких метеостанций,
+	также она даёт некоторые советы, как сделать воздух в комнате лучше.
+	`
 }
 
 func main() {

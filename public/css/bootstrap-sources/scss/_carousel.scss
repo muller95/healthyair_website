@@ -7,6 +7,7 @@
   position: relative;
   width: 100%;
   overflow: hidden;
+  margin-bottom: $carousel-indicator-margin;
 }
 
 .carousel-item {
@@ -112,7 +113,7 @@
 .carousel-indicators {
   position: absolute;
   right: 0;
-  bottom: -50px;
+  bottom: -$carousel-indicator-margin;
   left: 0;
   z-index: 15;
   display: flex;
