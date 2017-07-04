@@ -146,7 +146,7 @@
   color: #333; }
 
 .bd-featurette-img:hover {
-  color: #4592f7;
+  color: #5db4e3;
   text-decoration: none; }
 
 .bd-featurette-img img {
@@ -367,7 +367,7 @@
 
 .bd-toc-link:hover,
 .bd-toc-link:focus {
-  color: #4592f7;
+  color: #5db4e3;
   text-decoration: none; }
 
 .active > .bd-toc-link {
@@ -395,7 +395,7 @@
 
 .bd-sidebar .nav > li > a:hover,
 .bd-sidebar .nav > li > a:focus {
-  color: #4592f7;
+  color: #5db4e3;
   text-decoration: none;
   background-color: transparent; }
 
@@ -416,7 +416,7 @@
     font-weight: 500;
     color: #464a4c; }
     .bd-footer a:hover {
-      color: #4592f7; }
+      color: #5db4e3; }
   .bd-footer p {
     margin-bottom: 0; }
   @media (min-width: 576px) {

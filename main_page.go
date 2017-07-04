@@ -16,10 +16,16 @@ type Navbar struct {
 	Contacts string
 }
 
+type Cards struct {
+	Conveniently     string
+	ConvenientlyText string
+}
+
 type MainPage struct {
 	MainPage     string
 	Navbar       template.HTML
 	MainPageText string
+	Cards        template.HTML
 }
 
 func executeNavbar(resources map[string]string) template.HTML {
@@ -46,6 +52,28 @@ func executeNavbar(resources map[string]string) template.HTML {
 	return template.HTML(navbarWriter.Bytes())
 }
 
+func executeCards(resources map[string]string) template.HTML {
+	var cards Cards
+
+	cards.Conveniently = resources["Conveniently"]
+	cards.ConvenientlyText = resources["ConvenientlyText"]
+
+	cardsTemplate, err := template.ParseFiles("public/views/cards_template.html")
+	if err != nil {
+		log.Println("Err on parsing main page template: ", err)
+		return ""
+	}
+
+	cardsWriter := &bytes.Buffer{}
+	err = cardsTemplate.Execute(cardsWriter, cards)
+	if err != nil {
+		log.Println("Err on executing cards template: ", err)
+		return ""
+	}
+
+	return template.HTML(cardsWriter.Bytes())
+}
+
 func mainPage(ctx *fasthttp.RequestCtx, language string) {
 	var mainPage MainPage
 
@@ -56,6 +84,7 @@ func mainPage(ctx *fasthttp.RequestCtx, language string) {
 
 	mainPage.MainPage = resources["MainPage"]
 	mainPage.Navbar = executeNavbar(resources)
+	mainPage.Cards = executeCards(resources)
 	mainPage.MainPageText = resources["MainPageText"]
 
 	registerTemplate, err := template.ParseFiles("public/views/main_page.html")
