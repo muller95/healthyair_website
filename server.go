@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"time"
 
 	"fmt"
 
@@ -12,6 +13,7 @@ import (
 	"strings"
 
 	_ "github.com/go-sql-driver/mysql"
+	tarantool "github.com/tarantool/go-tarantool"
 	"github.com/valyala/fasthttp"
 )
 
@@ -19,6 +21,11 @@ var languageResources map[string]map[string]string
 
 var healthyairSQLport, healthyairSQLuser, healthyairSQLpassword string
 var dbConn *sql.DB
+
+var healthyairTARANTOOLserver string
+var healthyairTARANTOOLopts tarantool.Opts
+
+var healthyairTARANTOOLclient *tarantool.Connection
 
 var publicKey = []byte(`
 -----BEGIN PUBLIC KEY-----
@@ -60,6 +67,14 @@ func requestHandler(ctx *fasthttp.RequestCtx) {
 	}
 
 	switch string(ctx.Path()[:]) {
+	case "/get_ticket":
+		newSessID := sessionStart()
+		var c fasthttp.Cookie
+		c.SetKey("sessionID")
+		c.SetValue(newSessID)
+		ctx.Response.Header.SetCookie(&c)
+		break
+
 	case "/":
 		mainPage(ctx, language)
 		break
@@ -69,14 +84,7 @@ func requestHandler(ctx *fasthttp.RequestCtx) {
 		break
 
 	case "/register/enter":
-		//fmt.Println("here1")
-		/*conn, err = listener.Accept()
-		if err != nil {
-			log.Fatal("Cannot accept connection: ", err)
-		}*/
 		registerEnter(ctx)
-		//fmt.Println("here3")
-		//conn.Close()
 		break
 
 	case "/authorization":
@@ -210,11 +218,31 @@ func main() {
 		log.Fatal("Err on open database: ", err)
 	}
 
+	healthyairTARANTOOLserver = "127.0.0.1:3309"
+	healthyairTARANTOOLopts = tarantool.Opts{
+		Timeout:       50 * time.Millisecond,
+		Reconnect:     100 * time.Millisecond,
+		MaxReconnects: 3,
+		User:          "user",
+		Pass:          "resu",
+	}
+	healthyairTARANTOOLclient, err = tarantool.Connect(healthyairTARANTOOLserver, healthyairTARANTOOLopts)
+	if err != nil {
+		log.Fatal("@ERR ON CONNECTING TO TARANTOOL: ", err.Error())
+	}
+
+	resp, err := healthyairTARANTOOLclient.Ping()
+	if err != nil {
+		log.Println("Ping Code", resp.Code)
+		log.Println("Ping Data", resp.Data)
+		log.Fatal("@ERR ON PING: ", err)
+	}
+
 	// err = fasthttp.ListenAndServe("0.0.0.0:80", requestHandler)
 	err = fasthttp.ListenAndServeTLS(":"+serverPort, certificatePath, keyPath,
 		requestHandler)
 	if err != nil {
-		log.Fatal("Err on startup server: ", err)
+		log.Fatal("@ERR ON STARTUP SERVER: ", err)
 	}
 
 }

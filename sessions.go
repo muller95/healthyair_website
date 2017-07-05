@@ -1,43 +1,59 @@
 package main
 
 import (
+	"log"
+	"time"
+
 	"github.com/google/uuid"
+	tarantool "github.com/tarantool/go-tarantool"
 )
 
-type Session interface {
-	Set(key, value interface{}) error //set session value
-	Get(key interface{}) interface{}  //get session value
-	Delete(key interface{}) error     //delete session value
-	SessionID() string                //back current sessionID
+type session struct {
+	sessionID         string
+	userID            uint
+	authorized        uint
+	preferredLanguage string
+	startTime         uint
 }
 
-type Provider interface {
-	SessionInit(sid string) (Session, error)
-	SessionRead(sid string) (Session, error)
-	SessionDestroy(sid string) error
-	SessionGC(maxLifeTime int64)
-}
-
-var provides = make(map[string]Provider)
-
-// Register makes a session provider available by the provided name.
-// If a Register is called twice with the same name or if the driver is nil,
-// it panics.
-func Register(name string, provider Provider) {
-	if provider == nil {
-		panic("session: Register provider is nil")
+func sessionStart() string {
+	newSessID, err := uuid.NewRandom()
+	if err != nil {
+		log.Println("@ERR ON INITING SESSID")
+		return ""
 	}
-	if _, dup := provides[name]; dup {
-		panic("session: Register called twice for provider " + name)
+	str := newSessID.String()
+	_, err = healthyairTARANTOOLclient.Insert("healthyair", []interface{}{"aaaaa", 0, 0, "ru", uint(time.Now().Hour()*60 + time.Now().Minute())})
+	if err != nil {
+		log.Println("@ERR ON INSERT SESSION DATA TO TARANTOOL: ", err)
+		return ""
 	}
-	provides[name] = provider
+	return str
 }
+func sessionGet(SessID string) session {
+	var uSession session
+	resp, err := healthyairTARANTOOLclient.Select("healthyair", "sessionID", 0, 1, tarantool.IterEq, []interface{}{SessID})
+	if err != nil {
+		log.Println("Insert Error ", err)
+		log.Println("Insert Code ", resp.Code)
+		return uSession
+	}
 
-func createSessID() uuid.UUID {
-	HAuuid, _ := uuid.NewRandom()
-	return HAuuid
+	uSession.sessionID = SessID
+	uSession.userID = resp.Tuples()[0][1].(uint)
+	uSession.authorized = resp.Tuples()[0][2].(uint)
+	uSession.preferredLanguage = resp.Tuples()[0][3].(string)
+	uSession.startTime = resp.Tuples()[0][4].(uint)
+
+	return uSession
 }
-
-/*func SessionStart() Session {
-
-}*/
+func sessionUpsert(Sess session) {
+	_, err := healthyairTARANTOOLclient.Update("healthyair", "sessionID", []interface{}{Sess.sessionID}, []interface{}{
+		[]interface{}{"=", 1, Sess.userID},
+		[]interface{}{"=", 2, Sess.authorized},
+		[]interface{}{"=", 3, Sess.preferredLanguage}})
+	if err != nil {
+		log.Println("@ERR ON UPSERT INFO TO TARANTOOL: ", err)
+		return
+	}
+}

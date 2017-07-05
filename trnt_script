@@ -1,0 +1,7 @@
+s = box.schema.space.create('healthyair', {id = 0, engine = 'vinyl', field_count = 5})
+s:create_index('sessionID', {unique=true,type='tree',parts={1, 'string'}})
+s:create_index('userID', {unique=false,type='tree',parts={2, 'unsigned'}})
+s:create_index('authorized', {unique=false,type='tree',parts={3, 'unsigned'}})
+s:create_index('preferredLanguage', {unique=false,type='tree',parts={4, 'string'}})
+s:create_index('startTime', {unique=false,type='tree',parts={5, 'unsigned'}})
+
