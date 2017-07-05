@@ -14,6 +14,7 @@ type Navbar struct {
 	Buy      string
 	AboutUs  string
 	Contacts string
+	Language string
 }
 
 type Cards struct {
@@ -39,6 +40,7 @@ func executeNavbar(resources map[string]string) template.HTML {
 	navbar.Buy = resources["Buy"]
 	navbar.Contacts = resources["Contacts"]
 	navbar.Main = resources["Main"]
+	navbar.Language = "ru"
 
 	navbarTemplate, err := template.ParseFiles("public/views/nav_template.html")
 	if err != nil {

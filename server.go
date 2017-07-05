@@ -56,7 +56,20 @@ shapI5224UYfNtBAzSS44jbeM3lBjhWpQvFl3csCddM=
 
 //var listener net.Listener
 
+type RestCode uint32
+
+const (
+	Ok                  RestCode = 200
+	NotFound            RestCode = 404
+	SessionExpired      RestCode = 471
+	InternalServerError RestCode = 500
+)
+
 func requestHandler(ctx *fasthttp.RequestCtx) {
+	var session Session
+	var rc RestCode
+	var c fasthttp.Cookie
+
 	language := "en"
 	acceptLanguages := strings.Split(string(ctx.Request.Header.Peek("Accept-Language")), ";")
 	if len(acceptLanguages) > 0 {
@@ -66,15 +79,34 @@ func requestHandler(ctx *fasthttp.RequestCtx) {
 		}
 	}
 
-	switch string(ctx.Path()[:]) {
-	case "/get_ticket":
-		newSessID := sessionStart()
-		var c fasthttp.Cookie
-		c.SetKey("sessionID")
-		c.SetValue(newSessID)
-		ctx.Response.Header.SetCookie(&c)
-		break
+	if len(ctx.Request.Header.Cookie("session_id")) == 0 {
+		session, rc = SessionStart(language)
+		if rc != Ok {
+			ctx.Response.SetStatusCode(int(rc))
+			return
+		}
 
+		c.SetKey("session_id")
+		c.SetValue(session.SessionID)
+		ctx.Response.Header.SetCookie(&c)
+	} else {
+		session, rc := SessionGet(string(ctx.Request.Header.Cookie("session_id")))
+		if rc == NotFound || rc == SessionExpired {
+			session, rc = SessionStart(language)
+			if rc != Ok {
+				ctx.Response.SetStatusCode(int(rc))
+				return
+			}
+
+			c.SetKey("session_id")
+			c.SetValue(session.SessionID)
+		} else if rc != Ok {
+			ctx.Response.SetStatusCode(int(rc))
+			return
+		}
+	}
+
+	switch string(ctx.Path()[:]) {
 	case "/":
 		mainPage(ctx, language)
 		break
@@ -223,8 +255,7 @@ func main() {
 		Timeout:       50 * time.Millisecond,
 		Reconnect:     100 * time.Millisecond,
 		MaxReconnects: 3,
-		User:          "user",
-		Pass:          "resu",
+		User:          "guest",
 	}
 	healthyairTARANTOOLclient, err = tarantool.Connect(healthyairTARANTOOLserver, healthyairTARANTOOLopts)
 	if err != nil {
