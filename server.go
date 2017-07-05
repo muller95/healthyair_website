@@ -146,10 +146,32 @@ func initResources() {
 
 	languageResources["en"]["ConvenientlyText"] =
 		`
-	Learn about the need to ventilate the room with your mobile device
+	Learn about the need to ventilate the room with your mobile device.
 	`
 	languageResources["ru"]["ConvenientlyText"] = `
-	Узнавайте о необходимости проветрить помещение с помощью Вашего мобильного устройства
+	Узнавайте о необходимости проветрить помещение с помощью Вашего мобильного устройства.
+	`
+
+	languageResources["en"]["Fast"] = "FAST"
+	languageResources["ru"]["Fast"] = "БЫСТРО"
+
+	languageResources["en"]["FastText"] = `
+	There is no need to take readings directly from the weather station, you can monitor them using 
+	the web-site.
+	`
+	languageResources["ru"]["FastText"] = `
+	Нет необходимости снимать показания непосредственно с метеостанции, можно следить за ними
+	при помощи веб-сайта.
+	`
+
+	languageResources["en"]["Qualitatively"] = "QUALITATIVELY"
+	languageResources["ru"]["Qualitatively"] = "КАЧЕСТВЕННО"
+
+	languageResources["en"]["QualitativelyText"] = `
+	The weather station will be your reliable assistant in maintaining the cleanliness of the house.
+	`
+	languageResources["ru"]["QualitativelyText"] = `
+	Метостанция станет вашим надёжным помощником в поддержании чистоты дома.
 	`
 }
 

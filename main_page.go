@@ -17,8 +17,12 @@ type Navbar struct {
 }
 
 type Cards struct {
-	Conveniently     string
-	ConvenientlyText string
+	Conveniently      string
+	ConvenientlyText  string
+	Fast              string
+	FastText          string
+	Qualitatively     string
+	QualitativelyText string
 }
 
 type MainPage struct {
@@ -57,6 +61,10 @@ func executeCards(resources map[string]string) template.HTML {
 
 	cards.Conveniently = resources["Conveniently"]
 	cards.ConvenientlyText = resources["ConvenientlyText"]
+	cards.Fast = resources["Fast"]
+	cards.FastText = resources["FastText"]
+	cards.Qualitatively = resources["Qualitatively"]
+	cards.QualitativelyText = resources["QualitativelyText"]
 
 	cardsTemplate, err := template.ParseFiles("public/views/cards_template.html")
 	if err != nil {
