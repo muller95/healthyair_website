@@ -20,7 +20,7 @@ func authorizeEnter(ctx *fasthttp.RequestCtx, session *Session) {
 		return
 	}
 	if rows.Next() {
-		var uid uint
+		var uid uint64
 		err = rows.Scan(&uid)
 		if err != nil {
 			log.Println("@ERR ON SCANNING ROWS: ", err)

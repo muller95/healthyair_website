@@ -33,14 +33,14 @@ type MainPage struct {
 	Cards        template.HTML
 }
 
-func executeNavbar(resources map[string]string) template.HTML {
+func executeNavbar(resources map[string]string, session *Session) template.HTML {
 	var navbar Navbar
 
 	navbar.AboutUs = resources["AboutUs"]
 	navbar.Buy = resources["Buy"]
 	navbar.Contacts = resources["Contacts"]
 	navbar.Main = resources["Main"]
-	navbar.Language = "ru"
+	navbar.Language = session.PreferredLanguage
 
 	navbarTemplate, err := template.ParseFiles("public/views/nav_template.html")
 	if err != nil {
@@ -84,16 +84,14 @@ func executeCards(resources map[string]string) template.HTML {
 	return template.HTML(cardsWriter.Bytes())
 }
 
-func mainPage(ctx *fasthttp.RequestCtx, language string) {
+func mainPage(ctx *fasthttp.RequestCtx, session *Session) {
 	var mainPage MainPage
 
-	resources := languageResources["en"]
-	if language == "ru" {
-		resources = languageResources["ru"]
-	}
+	log.Println(session)
+	resources := languageResources[session.PreferredLanguage]
 
 	mainPage.MainPage = resources["MainPage"]
-	mainPage.Navbar = executeNavbar(resources)
+	mainPage.Navbar = executeNavbar(resources, session)
 	mainPage.Cards = executeCards(resources)
 	mainPage.MainPageText = resources["MainPageText"]
 

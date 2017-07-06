@@ -34,6 +34,15 @@
                     clicked$.addClass("active-link-sm");
                     clicked$.addClass("active");
 				});
+
+                $('button[data-language]').click(function(event) {
+                    var clicked$ = $(event.target);
+                    var lang = clicked$.attr("data-language");
+
+                    $.post("/set_preferred_language", {language: lang}, function() {
+                        location.reload();
+                    });
+                });
             });
         </script>
     </head>
