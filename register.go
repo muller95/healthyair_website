@@ -5,13 +5,13 @@ import (
 
 	"fmt"
 
+	"html/template"
+	"strings"
+
+	"github.com/asaskevich/govalidator"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/valyala/fasthttp"
-
-	"html/template"
 )
-
-//func send_to_mysql()
 
 type RegisterCard struct {
 	Password     string
@@ -19,6 +19,10 @@ type RegisterCard struct {
 	Registration string
 	Cancel       string
 	Name         string
+}
+
+func PasswordIsValid(str string) bool {
+	return (len(str) >= 7) && (strings.ToLower(str) != str) && strings.ContainsAny(str, "0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9")
 }
 
 func registerForm(ctx *fasthttp.RequestCtx, language string) {
@@ -47,8 +51,16 @@ func registerEnter(ctx *fasthttp.RequestCtx) {
 	password := string(ctx.PostArgs().Peek("password"))
 	name := string(ctx.PostArgs().Peek("name"))
 
+	if !govalidator.IsEmail(email) {
+		log.Println("@ERR ON WRONG EMAIL SYNTAX")
+		return
+	}
+	if !PasswordIsValid(password) {
+		log.Println("@ERR ON WRONG PASSWORD SYNTAX")
+		return
+	}
 	query := "SELECT * FROM users WHERE email=\"" + email + "\";"
-	fmt.Println(query)
+	//fmt.Println(query)
 	rows, err := dbConn.Query(query)
 	defer rows.Close()
 	if err != nil {
@@ -56,7 +68,7 @@ func registerEnter(ctx *fasthttp.RequestCtx) {
 		return
 	}
 	if rows.Next() {
-		log.Println("@ERR ON WRONG EMAIL")
+		log.Println("@ERR ON WRONG EMAIL(ALREADY EXIST)")
 		return
 	}
 
