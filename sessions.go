@@ -43,6 +43,31 @@ func SessionStart(language string) (Session, RestCode) {
 	return session, Ok
 }
 
+func SessionSetUserID(session *Session) {
+	_, err := healthyairTARANTOOLclient.Update(sessionsSpace, "primary", []interface{}{session.SessionID},
+		[]interface{}{[]interface{}{"=", 1, session.UserID}, []interface{}{"=", 2, session.Authorized}})
+	if err != nil {
+		log.Println("Err on upsert userID into tarantool: ", err)
+		return
+	}
+}
+func SessionSetPreferredLanguage(session *Session) {
+	_, err := healthyairTARANTOOLclient.Update(sessionsSpace, "primary", []interface{}{session.SessionID},
+		[]interface{}{[]interface{}{"=", 3, session.PreferredLanguage}})
+	if err != nil {
+		log.Println("Err on upsert session into tarantool: ", err)
+		return
+	}
+}
+func SessionResetEndTime(session *Session) {
+	_, err := healthyairTARANTOOLclient.Update(sessionsSpace, "primary", []interface{}{session.SessionID},
+		[]interface{}{[]interface{}{"=", 4, session.EndTime}})
+	if err != nil {
+		log.Println("Err on upsert session into tarantool: ", err)
+		return
+	}
+}
+
 func SessionDelete(sid string) {
 	resp, err := healthyairTARANTOOLclient.Delete(sessionsSpace, "primary", []interface{}{sid})
 	if err != nil {
@@ -77,7 +102,7 @@ func SessionGet(sid string) (Session, RestCode) {
 	return session, Ok
 }
 
-func SessionUpsert(Sess Session) {
+func SessionUpsert(Sess *Session) {
 	_, err := healthyairTARANTOOLclient.Update(sessionsSpace, "primary", []interface{}{Sess.SessionID},
 		[]interface{}{[]interface{}{"=", 1, Sess.UserID}, []interface{}{"=", 2, Sess.Authorized},
 			[]interface{}{"=", 3, Sess.PreferredLanguage}})
