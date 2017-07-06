@@ -8,3 +8,9 @@ go:
 
 before_install:
   ./travis-install.sh
+
+install:
+  go build
+
+script:
+  go test
