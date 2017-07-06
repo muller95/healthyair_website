@@ -11,5 +11,3 @@ go get "github.com/valyala/fasthttp"
 go get "github.com/go-sql-driver/mysql"
 go get "github.com/google/uuid"
 go get "github.com/tarantool/go-tarantool"
-
-sudo apt-get install -y mysql-server-5.5

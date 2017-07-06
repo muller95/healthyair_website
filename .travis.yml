@@ -6,6 +6,9 @@ language: go
 go:
   1.8.1
 
+services:
+  mysql
+
 before_install:
   ./travis-install.sh
 
