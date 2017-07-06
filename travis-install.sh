@@ -12,4 +12,4 @@ go get "github.com/go-sql-driver/mysql"
 go get "github.com/google/uuid"
 go get "github.com/tarantool/go-tarantool"
 
-sudo apt-get install -y mysql
+sudo apt-get install -y mysql-server
