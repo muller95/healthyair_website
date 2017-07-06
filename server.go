@@ -100,6 +100,7 @@ func requestHandler(ctx *fasthttp.RequestCtx) {
 
 			c.SetKey("session_id")
 			c.SetValue(session.SessionID)
+			ctx.Response.Header.SetCookie(&c)
 		} else if rc != Ok {
 			ctx.Response.SetStatusCode(int(rc))
 			return
@@ -119,8 +120,12 @@ func requestHandler(ctx *fasthttp.RequestCtx) {
 		registerEnter(ctx)
 		break
 
-	case "/authorization":
-		fmt.Println("authorization()")
+	case "/authorize":
+		fmt.Println("authorize()")
+		break
+
+	case "/authorize_enter":
+		authorizeEnter(ctx, &session)
 		break
 
 	default:
