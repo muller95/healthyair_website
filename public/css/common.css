@@ -35,6 +35,20 @@ body {
     padding-top:15rem
 }
 
+.nav-item-big {
+    width:100px
+}
+
+.nav-plain {
+    color: #A0A0A0;
+    margin-top:10
+}
+
+.nav-item {
+    text-align: center;
+    white-space: nowrap
+}
+
 .carousel-item.active,
 .carousel-item-next,
 .carousel-item-prev {
