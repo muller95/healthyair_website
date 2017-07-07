@@ -59,9 +59,9 @@ func registerEnter(ctx *fasthttp.RequestCtx) {
 		log.Println("@ERR ON WRONG PASSWORD SYNTAX")
 		return
 	}
-	query := "SELECT * FROM users WHERE email=\"" + email + "\";"
+	query := "SELECT * FROM users WHERE email=?;"
 	//fmt.Println(query)
-	rows, err := dbConn.Query(query)
+	rows, err := dbConn.Query(query, email)
 	defer rows.Close()
 	if err != nil {
 		log.Println("@ERR ON QUERY: 'SELECT * FROM users WHERE email=...':", err)

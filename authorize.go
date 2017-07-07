@@ -11,9 +11,9 @@ func authorizeEnter(ctx *fasthttp.RequestCtx, session *Session) {
 	email := string(ctx.PostArgs().Peek("email"))
 	password := string(ctx.PostArgs().Peek("password"))
 
-	query := "SELECT id FROM users WHERE email=\"" + email + "\" && passwd=\"" + password + "\";"
+	query := "SELECT id FROM users WHERE email=? && passwd=?;"
 	//fmt.Println(query)
-	rows, err := dbConn.Query(query)
+	rows, err := dbConn.Query(query, email, password)
 	defer rows.Close()
 	if err != nil {
 		log.Println("@ERR ON QUERY: 'SELECT id FROM users WHERE email=..., passwd=...':", err)

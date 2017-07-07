@@ -13,7 +13,7 @@ before_install:
   ./travis-install.sh
 
 install:
-  go build
+  go build server.go main_page.go register.go authorize.go sessions.go
 
 script:
-  go test
+  go test server_test.go
