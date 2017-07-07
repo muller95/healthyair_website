@@ -20,15 +20,11 @@ body {
 }
 
 .active-link {
-    margin-top:5%;
     border-bottom:7px solid #5db4e3;
-    min-height: 100px;
 }
 
 .simple-link {
-    margin-top:5%;
-     border-bottom:7px solid transparent;
-    min-height: 100px;
+    border-bottom:7px solid transparent;
 }
 
 .active-link-sm {
