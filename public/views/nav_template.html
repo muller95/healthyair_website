@@ -1,17 +1,15 @@
-<nav class="navbar navbar-toggleable-sm navbar-inverse fixed-top bg-inverse hidden-sm-down" style="padding: 0">
-    
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col col-md-3">
-                <a class="navbar-brand" href="#">
-                    <img class="navbar-brand img-fluid" src="/images/logo.png" style="margin-top:10; margin-bottom:10">
-                </a>
-            </div>
+<nav class="navbar justify-content-between navbar-toggleable-sm navbar-inverse fixed-top bg-inverse hidden-sm-down" style="padding: 0">
+   <div class="container-fluid">
+       <div class="row">
+        <div class="col-2 offset-1">
+            <a class="navbar-brand" href="#" style="margin-top:15">
+                <img src="/images/logo.png">
+            </a>
+        </div>
 
-            <div class="col col-md-8" style="padding:0; margin-top:20">
-
-                <div class="collapse navbar-collapse" id="navbar-big">
-                    <ul class="navbar-nav mr-auto nav-justified" style="font-size:20; width:100%"> 
+         <div class="col-8">
+            <div class="collapse navbar-collapse" id="navbar-big" style="padding-top:0; padding-bottom:0; padding-right: 15; padding-left:15;">
+                    <ul class="navbar-nav mr-auto nav-justified" style="font-size:20; padding-top:0; padding-bottom:0; min-height:80px; margin-top:20"> 
                         <li id="li-main" class="nav-item simple-link nav-item-big" data-menu-size="big" data-link-sm="#li-main-sm">
                             <a class="nav-link" href="#" data-menu-size="big">{{.Main}} <span class="sr-only">(current)</span></a>
                         </li>
@@ -19,35 +17,31 @@
                             <a class="nav-link" href="#" data-menu-size="big">{{.Buy}}</a>
                         </li>
                         <li id="li-about" class="nav-item simple-link nav-item-big" data-menu-size="big" data-link-sm="#li-about-sm">
-                            <a class="nav-link" href="#" data-menu-size="big">{{.AboutUs}}</a>
+                            <a class="nav-link" href="#" data-menu-size="big" style="white-space:nowrap">{{.AboutUs}}</a>
                         </li>
                         <li id="li-contacts" class="nav-item simple-link nav-item-big" data-menu-size="big" data-link-sm="#li-contacts-sm">
                             <a class="nav-link" href="#" data-menu-size="big">{{.Contacts}}</a>
+                        </li>
+                        <li class="nav-item">
+                             <div class="btn-group" data-toggle="buttons" style="max-height: 50px; margin-top:10">
+                                <button class="btn {{if eq .Language "ru"}} btn-primary active focus {{else}} btn-outline-secondary {{end}}" data-language="ru">Ru</button>
+                                <button class="btn {{if eq .Language "en"}} btn-primary active focus {{else}} btn-outline-secondary {{end}}" data-language="en">En</button>
+                            </div>
                         </li>	
-                    </ul>
-                    
-                    <div class="btn-group" data-toggle="buttons" style="max-height: 50px; margin-top:5%">
-                        <label class="btn {{if eq .Language "ru"}} btn-primary active focus {{else}} btn-outline-secondary {{end}}">
-                            <input type="radio" name="options" id="ru" autocomplete="off" checked> Ru
-                        </label>
-                        <label class="btn {{if eq .Language "en"}} btn-primary active focus {{else}} btn-outline-secondary {{end}}">
-                            <input type="radio" name="options" id="en" autocomplete="off"> En
-                        </label>
-                    </div>
+                    </ul>      
                 </div>
-
             </div>
-        <div>
+        </div>
     </div>
 </nav>
 
 <nav class="navbar navbar-toggleable-sm navbar-inverse fixed-top bg-inverse hidden-md-up">
-    <button class="navbar-toggler navbar-toggler-right mt-4" type="button" data-toggle="collapse" data-target="#navbar-small" aria-controls="navbar-small" aria-expanded="false" aria-label="Toggle navigation" style="margin-bottom:10">
+    <button class="navbar-toggler navbar-toggler-right mt-4" type="button" data-toggle="collapse" data-target="#navbar-small" aria-controls="navbar-small" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
         <a class="navbar-brand" href="#">
-            <img class="navbar-brand" src="/images/logo.png" style="height:10%">
+            <img class="navbar-brand" src="/images/logo.png">
         </a>
    
         <div class="collapse navbar-collapse" id="navbar-small">
@@ -66,13 +60,9 @@
                 </li>	
 
                 <li class="nav-item">
-                    <div class="btn-group" data-toggle="buttons">
-                        <label class="btn btn-outline-secondary">
-                            <input type="radio" name="options" id="ru" autocomplete="off" checked> Ru
-                        </label>
-                        <label class="btn btn-outline-secondary">
-                            <input type="radio" name="options" id="en" autocomplete="off"> En
-                        </label>
+                    <div class="btn-group" data-toggle="buttons" style="max-height: 50px; margin-top:5%">
+                        <button class="btn {{if eq .Language "ru"}} btn-primary active focus {{else}} btn-outline-secondary {{end}}" data-language="ru">Ru</button>
+                        <button class="btn {{if eq .Language "en"}} btn-primary active focus {{else}} btn-outline-secondary {{end}}" data-language="en">En</button>
                     </div>
                 </li>
             </ul>

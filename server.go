@@ -90,7 +90,7 @@ func requestHandler(ctx *fasthttp.RequestCtx) {
 		c.SetValue(session.SessionID)
 		ctx.Response.Header.SetCookie(&c)
 	} else {
-		session, rc := SessionGet(string(ctx.Request.Header.Cookie("session_id")))
+		session, rc = SessionGet(string(ctx.Request.Header.Cookie("session_id")))
 		if rc == NotFound || rc == SessionExpired {
 			session, rc = SessionStart(language)
 			if rc != Ok {
@@ -109,7 +109,7 @@ func requestHandler(ctx *fasthttp.RequestCtx) {
 
 	switch string(ctx.Path()[:]) {
 	case "/":
-		mainPage(ctx, language)
+		mainPage(ctx, &session)
 		break
 
 	case "/register":
@@ -126,6 +126,18 @@ func requestHandler(ctx *fasthttp.RequestCtx) {
 
 	case "/authorize_enter":
 		authorizeEnter(ctx, &session)
+		break
+
+	case "/set_preferred_language":
+		preferedLanguage := string(ctx.PostArgs().Peek("language"))
+		if preferedLanguage != "ru" {
+			preferedLanguage = "en"
+		}
+
+		session.PreferredLanguage = preferedLanguage
+		rc = SessionSetPreferredLanguage(&session)
+
+		ctx.Response.SetStatusCode(int(rc))
 		break
 
 	default:
