@@ -10,7 +10,7 @@ import (
 
 type Session struct {
 	SessionID         string
-	UserID            uint64
+	UserID            uint
 	Authorized        bool
 	PreferredLanguage string
 	EndTime           int64
@@ -51,15 +51,13 @@ func SessionSetUserID(session *Session) {
 		return
 	}
 }
-func SessionSetPreferredLanguage(session *Session) RestCode {
+func SessionSetPreferredLanguage(session *Session) {
 	_, err := healthyairTARANTOOLclient.Update(sessionsSpace, "primary", []interface{}{session.SessionID},
 		[]interface{}{[]interface{}{"=", 3, session.PreferredLanguage}})
 	if err != nil {
-		log.Println("Err on upsert language into tarantool: ", err)
-		return InternalServerError
+		log.Println("Err on upsert session into tarantool: ", err)
+		return
 	}
-
-	return Ok
 }
 func SessionResetEndTime(session *Session) {
 	_, err := healthyairTARANTOOLclient.Update(sessionsSpace, "primary", []interface{}{session.SessionID},
@@ -91,12 +89,11 @@ func SessionGet(sid string) (Session, RestCode) {
 	}
 
 	session.SessionID = sid
-	session.UserID = resp.Tuples()[0][1].(uint64)
+	session.UserID = resp.Tuples()[0][1].(uint)
 	session.Authorized = resp.Tuples()[0][2].(bool)
 	session.PreferredLanguage = resp.Tuples()[0][3].(string)
-	session.EndTime = int64(resp.Tuples()[0][4].(uint64))
+	session.EndTime = int64(resp.Tuples()[0][4].(uint))
 
-	log.Println(session)
 	if time.Now().Unix() > session.EndTime {
 		SessionDelete(sid)
 		return session, SessionExpired
