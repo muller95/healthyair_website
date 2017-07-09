@@ -157,12 +157,6 @@ func initResources() {
 	languageResources["en"]["Password"] = "Password"
 	languageResources["ru"]["Password"] = "Пароль"
 
-	languageResources["en"]["Register"] = "Register"
-	languageResources["ru"]["Register"] = "Зарегистрироваться"
-
-	languageResources["en"]["Registration"] = "Registration"
-	languageResources["ru"]["Registration"] = "Регистрация"
-
 	languageResources["en"]["Cancel"] = "Cancel"
 	languageResources["ru"]["Cancel"] = "Отмена"
 
@@ -230,6 +224,12 @@ func initResources() {
 	languageResources["ru"]["QualitativelyText"] = `
 	Метостанция станет вашим надёжным помощником в поддержании чистоты дома.
 	`
+
+	languageResources["en"]["SignIn"] = "Sign in"
+	languageResources["ru"]["SignIn"] = "Войти"
+
+	languageResources["en"]["Register"] = "Register"
+	languageResources["ru"]["Register"] = "Регистрация"
 }
 
 func main() {

@@ -15,6 +15,8 @@ type Navbar struct {
 	AboutUs  string
 	Contacts string
 	Language string
+	SignIn   string
+	Register string
 }
 
 type Cards struct {
@@ -41,6 +43,8 @@ func executeNavbar(resources map[string]string, session *Session) template.HTML 
 	navbar.Contacts = resources["Contacts"]
 	navbar.Main = resources["Main"]
 	navbar.Language = session.PreferredLanguage
+	navbar.SignIn = resources["SignIn"]
+	navbar.Register = resources["Register"]
 
 	navbarTemplate, err := template.ParseFiles("public/views/nav_template.html")
 	if err != nil {
