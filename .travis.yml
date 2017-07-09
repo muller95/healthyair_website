@@ -15,5 +15,9 @@ before_install:
 install:
   go build server.go main_page.go register.go authorize.go sessions.go
 
+before_script:
+  cat "./config/my.cnf" | sudo tee -a /etc/mysql/my.cnf
+  sudo service mysql restart
+
 script:
   go test server_test.go
