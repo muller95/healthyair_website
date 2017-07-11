@@ -22,7 +22,7 @@ before_script:
   sudo service mysql restart
 
 script:
-  go test server_test.go
+  go test
 
 after_script:
   cat "./logs/*"

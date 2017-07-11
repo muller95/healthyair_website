@@ -12,16 +12,9 @@ import (
 	tarantool "github.com/tarantool/go-tarantool"
 )
 
-var healthyairSQLport, healthyairSQLuser, healthyairSQLpassword string
-var dbConn *sql.DB
-
-var healthyairTARANTOOLserver string
-var healthyairTARANTOOLopts tarantool.Opts
-
-var healthyairTARANTOOLclient *tarantool.Connection
-
 func initial() {
 	healthyairSQLuser = os.Getenv("HEALTHYAIR_SQL_USER")
+	fmt.Printf("user: %s \n", healthyairSQLuser)
 	if healthyairSQLuser == "" {
 		log.Fatal("Err: HEALTHYAIR_SQL_USER is not set")
 	}
