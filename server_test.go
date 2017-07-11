@@ -14,7 +14,6 @@ import (
 
 func initial() {
 	healthyairSQLuser = os.Getenv("HEALTHYAIR_SQL_USER")
-	fmt.Printf("user: %s \n", healthyairSQLuser)
 	if healthyairSQLuser == "" {
 		log.Fatal("Err: HEALTHYAIR_SQL_USER is not set")
 	}
