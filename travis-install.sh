@@ -32,4 +32,7 @@ EOF
 sudo apt-get update
 sudo apt-get -y install tarantool
 
-tarantool init_tarantool.lua
+mkdir logs
+mkdir sessions
+
+tarantool init_tarantool.lua 2>./logs/tarantool-stderr.log  >./logs/tarantool-stdout.log &
