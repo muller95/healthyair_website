@@ -12,23 +12,23 @@ services:
   mysql
 
 before_install:
-  ./travis-install.sh
+  - ./travis-install.sh
 
 install:
-  go build server.go main_page.go register.go authorize.go sessions.go
+  - go build server.go main_page.go register.go authorize.go sessions.go
 
 before_script:
-  cat "./config/my.cnf" | sudo tee -a /etc/mysql/my.cnf
-  sudo service mysql restart
-  export HEALTHYAIR_SQL_USER=root
-  export HEALTHYAIR_SQL_PASSWORD=1
-  export HEALTHYAIR_SQL_PORT=3308
-  export HEALTHYAIR_CERTIFICATE_PATH=~/healthyair_website/ssl_cert/server.crt
-  export HEALTHYAIR_KEY_PATH=~/healthyair_website/ssl_cert/server.key
-  export HEALTHYAIR_SERVER_PORT=10000
+  - cat "./config/my.cnf" | sudo tee -a /etc/mysql/my.cnf
+  - sudo service mysql restart
+  - export HEALTHYAIR_SQL_USER=root
+  - export HEALTHYAIR_SQL_PASSWORD=1
+  - export HEALTHYAIR_SQL_PORT=3308
+  - export HEALTHYAIR_CERTIFICATE_PATH=~/healthyair_website/ssl_cert/server.crt
+  - export HEALTHYAIR_KEY_PATH=~/healthyair_website/ssl_cert/server.key
+  - export HEALTHYAIR_SERVER_PORT=10000
 
 script:
-  go test
+  - go test
 
 after_script:
-  cat "./logs/*"
+  - cat "./logs/*"
