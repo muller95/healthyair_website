@@ -22,6 +22,12 @@ before_script:
   sudo service mysql restart
 
 script:
+  export HEALTHYAIR_SQL_USER=root
+  export HEALTHYAIR_SQL_PASSWORD=1
+  export HEALTHYAIR_SQL_PORT=3308
+  export HEALTHYAIR_CERTIFICATE_PATH=~/healthyair_website/ssl_cert/server.crt
+  export HEALTHYAIR_KEY_PATH=~/healthyair_website/ssl_cert/server.key
+  export HEALTHYAIR_SERVER_PORT=10000
   go test
 
 after_script:
