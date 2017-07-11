@@ -28,7 +28,7 @@ body {
 }
 
 .active-link-sm {
-    border-bottom:3px solid #4592f7;
+    border-bottom:3px solid #5db4e3;
 }
 
 body {
@@ -53,6 +53,18 @@ body {
 .carousel-item-next,
 .carousel-item-prev {
     display: block
+}
+
+.ha-primary-round {
+    background-color: #0F0F0F;
+    height: 50px; 
+    border-radius: 50px
+}
+
+.ha-active-round {
+    background-color: #5db4e3;
+    height: 50px; 
+    border-radius: 50px
 }
 
 

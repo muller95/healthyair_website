@@ -1,9 +1,9 @@
-<nav class="navbar justify-content-between navbar-toggleable-md navbar-inverse fixed-top bg-inverse hidden-md-down" style="padding: 0;">
+<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse hidden-md-down" style="padding: 0;">
     <div class="container">
         <a class="navbar-brand" href="#" style="margin-left:25">
             <img src="/images/logo.png">
         </a>
-        <ul class="navbar-nav mr-auto" style="font-size:20; padding-top:0; padding-bottom:0; min-height:80px; margin-top:20"> 
+        <ul class="navbar-nav mr-auto" style="font-size:18; padding-top:0; padding-bottom:0; min-height:75px; margin-top:25"> 
             <li id="li-main" class="nav-item simple-link nav-item-big" data-menu-size="big" data-link-sm="#li-main-sm">
                 <a class="nav-link" href="#" data-menu-size="big">{{.Main}} <span class="sr-only">(current)</span></a>
             </li>
@@ -16,8 +16,10 @@
             <li id="li-contacts" class="nav-item simple-link nav-item-big" data-menu-size="big" data-link-sm="#li-contacts-sm">
                 <a class="nav-link" href="#" data-menu-size="big">{{.Contacts}}</a>
             </li>
-            <li style="margin-top: 10; margin-left: 25;">
-                <img src="/images/navbar/enter.png">
+            <li style="margin-left: 25;">
+                <a href="#">
+                    <img id="enter-img" src="/images/navbar/enter.svg"  class="ha-primary-round">
+                </a>
             </li>
             <li class="nav-item">
                 <a id="signin"  class="nav-link" href="#">{{.SignIn}}</a>
@@ -29,7 +31,7 @@
                 <a id="register"  class="nav-link" href="#">{{.Register}}</a>
             <li>
             <li class="nav-item nav-item-big">
-                    <div class="btn-group" data-toggle="buttons" style="max-height: 50px; margin-top:10">
+                    <div class="btn-group" data-toggle="buttons" style="max-height: 50px; margin-top:5">
                     <button class="btn {{if eq .Language "ru"}} btn-primary active focus {{else}} btn-outline-secondary {{end}}" data-language="ru">Ru</button>
                     <button class="btn {{if eq .Language "en"}} btn-primary active focus {{else}} btn-outline-secondary {{end}}" data-language="en">En</button>
                 </div>

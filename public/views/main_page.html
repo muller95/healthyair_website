@@ -23,6 +23,18 @@
                     clicked$.addClass("active");
 				});
 
+              $("#enter-img").mouseenter(function(event) {
+                    var img$ = $(event.target);
+                    img$.removeClass("ha-primary-round");
+                    img$.addClass("ha-active-round");
+              });
+
+              $("#enter-img").mouseleave(function(event) {
+                    var img$ = $(event.target);
+                    img$.removeClass("ha-active-round");
+                    img$.addClass("ha-primary-round");
+              });
+
                 $('a[data-menu-size="small"]').click(function(event) {
                     var clicked$ = $(event.target.parentElement);
                     var big_link$ = $(clicked$.attr("data-link-big"));
