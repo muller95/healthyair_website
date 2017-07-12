@@ -67,4 +67,16 @@ body {
     border-radius: 50px
 }
 
+.ha-primary-round-sm {
+    background-color: #0F0F0F;
+    height: 25px; 
+    border-radius: 25px
+}
+
+.ha-active-round-sm {
+    background-color: #5db4e3;
+    height: 25px; 
+    border-radius: 25px
+}
+
 

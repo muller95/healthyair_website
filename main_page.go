@@ -10,14 +10,14 @@ import (
 )
 
 type Navbar struct {
-	Main     string
-	Buy      string
-	AboutUs  string
-	Contacts string
-	Language string
-	SignIn   string
-	Register string
-	Modals   template.HTML
+	Main         string
+	Buy          string
+	AboutUs      string
+	Contacts     string
+	Language     string
+	SignIn       string
+	Registration string
+	Modals       template.HTML
 }
 
 type Cards struct {
@@ -37,11 +37,13 @@ type MainPage struct {
 }
 
 type NavbarModals struct {
-	dummy string
+	Registration string
 }
 
 func executeModals(resources map[string]string, session *Session) template.HTML {
 	var navbarModals NavbarModals
+
+	navbarModals.Registration = resources["Registration"]
 
 	navbarModalsTemplate, err := template.ParseFiles("public/views/navbar_modals_template.html")
 	if err != nil {
@@ -68,7 +70,7 @@ func executeNavbar(resources map[string]string, session *Session) template.HTML 
 	navbar.Main = resources["Main"]
 	navbar.Language = session.PreferredLanguage
 	navbar.SignIn = resources["SignIn"]
-	navbar.Register = resources["Register"]
+	navbar.Registration = resources["Registration"]
 	navbar.Modals = executeModals(resources, session)
 
 	navbarTemplate, err := template.ParseFiles("public/views/nav_template.html")

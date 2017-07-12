@@ -27,35 +27,6 @@ var healthyairTARANTOOLopts tarantool.Opts
 
 var healthyairTARANTOOLclient *tarantool.Connection
 
-var publicKey = []byte(`
------BEGIN PUBLIC KEY-----
-MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDVHqu2YJUDLjYdCDMmRlHJX1KI
-eiuiU6i+JbFrU/AylGXt2oCaGxGMiNqu1UIhxaG1Z6sozmgEFIZ9PPScAXghPm54
-eKspTmQ3oFtWGcyq9ury0HEezYDi7TZHlv2wKIVDacBHivNgsVQIhuN3ICHFFHMq
-9O0aN2dZFXB0rOImgQIDAQAB
------END PUBLIC KEY-----
-`)
-
-var privateKey = []byte(`
------BEGIN RSA PRIVATE KEY-----
-MIICXAIBAAKBgQDVHqu2YJUDLjYdCDMmRlHJX1KIeiuiU6i+JbFrU/AylGXt2oCa
-GxGMiNqu1UIhxaG1Z6sozmgEFIZ9PPScAXghPm54eKspTmQ3oFtWGcyq9ury0HEe
-zYDi7TZHlv2wKIVDacBHivNgsVQIhuN3ICHFFHMq9O0aN2dZFXB0rOImgQIDAQAB
-AoGAISMJs+vEf6AZzd3Ohi783ICzxoCodC7p19bohTWh7VthleAZityWl/FXf0Ot
-aq7d++TImimtxqSiXKqzpeYclVXkprwZfppCVUfK0YBf/JdBBZM0kaq1d+iKjTo+
-jPUy9U/4Tqd5o8oXWG8lS9vRiEUKO4VixEJsbV+3yaeC6AECQQD5A2VAarih46Xd
-aNmY9nC6J5MX0te9/IxODT+9KhDhY1JS9A6FUbm/sYl8NfLzsTBv2mD0pE54gXpF
-wY3GnnehAkEA2xl1+7NIiLQ7sCcpRFqzP0kBdIg/ir2Ahq3imV4RcQoP93RHGJ3m
-9pSdhz4lvA5mJtH0RFwMe2a0Wa2PpBPC4QJAVMa7KfsrcLI4PfD8Y/9C0Z23jlzR
-5nScr9YC5Tv1E0blOCiu6OSyAHlI/WjAlga1Ht+SMrfdn1k1b5o90mkRAQJBAIHq
-GvdgW0YT+MB+uA176oU/+MjscSEHNMqnGJHwIU9xs/36yJ1kI6tae/3Rb/aOYyvp
-mnleS1hwkcgLDf0waoECQEzihTwr0Mdg7swdcMejvPlSB32kr8JEfd3z71XTdwrz
-shapI5224UYfNtBAzSS44jbeM3lBjhWpQvFl3csCddM=
------END RSA PRIVATE KEY-----
-`)
-
-//var listener net.Listener
-
 type RestCode uint32
 
 const (
@@ -228,8 +199,8 @@ func initResources() {
 	languageResources["en"]["SignIn"] = "Sign in"
 	languageResources["ru"]["SignIn"] = "Войти"
 
-	languageResources["en"]["Register"] = "Register"
-	languageResources["ru"]["Register"] = "Регистрация"
+	languageResources["en"]["Registration"] = "Registration"
+	languageResources["ru"]["Registration"] = "Регистрация"
 }
 
 func main() {

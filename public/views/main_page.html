@@ -14,26 +14,38 @@
                 $('a[data-menu-size="big"]').click(function(event) {
                     var clicked$ = $(event.target.parentElement);
                     var sm_link$ = $(clicked$.attr("data-link-sm"));
-                     $(".active-link-sm").removeClass("active-link-sm").removeClass("active");
+                        $(".active-link-sm").removeClass("active-link-sm").removeClass("active");
                     sm_link$.addClass("active-link-sm");
                     sm_link$.addClass("active")
                     $(".active-link").removeClass("active-link").addClass("simple-link").removeClass("active");
                     clicked$.removeClass("simple-link");
                     clicked$.addClass("active-link");
                     clicked$.addClass("active");
-				});
+                });
 
-              $("#enter-img").mouseenter(function(event) {
+                $("#enter-img").mouseenter(function(event) {
                     var img$ = $(event.target);
                     img$.removeClass("ha-primary-round");
                     img$.addClass("ha-active-round");
-              });
+                });
 
-              $("#enter-img").mouseleave(function(event) {
+                $("#enter-img").mouseleave(function(event) {
                     var img$ = $(event.target);
                     img$.removeClass("ha-active-round");
                     img$.addClass("ha-primary-round");
-              });
+                });
+
+                $("#close-register-img").mouseenter(function(event) {
+                    var img$ = $(event.target);
+                    img$.removeClass("ha-primary-round-sm");
+                    img$.addClass("ha-active-round-sm");
+                });
+
+                $("#close-register-img").mouseleave(function(event) {
+                    var img$ = $(event.target);
+                    img$.removeClass("ha-active-round-sm");
+                    img$.addClass("ha-primary-round-sm");
+                });
 
                 $('a[data-menu-size="small"]').click(function(event) {
                     var clicked$ = $(event.target.parentElement);
@@ -45,7 +57,7 @@
                     $(".active-link-sm").removeClass("active-link-sm").removeClass("active");
                     clicked$.addClass("active-link-sm");
                     clicked$.addClass("active");
-				});
+                });
 
                 $('button[data-language]').click(function(event) {
                     var clicked$ = $(event.target);
