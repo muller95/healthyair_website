@@ -1,10 +1,11 @@
 <!-- Big menu -->
 <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse hidden-md-down" style="padding: 0;">
-    <div class="container">
-        <a class="navbar-brand" href="#" style="margin-left:25">
+    <div class="container-fluid">
+    <div class = "row">
+        <a class="navbar-brand" href="#" style="margin-top:15">
             <img src="/images/logo.png">
         </a>
-        <ul class="navbar-nav mr-auto" style="font-size:18; padding-top:0; padding-bottom:0; min-height:75px; margin-top:25"> 
+        <ul class="navbar-nav" style="font-size:18; padding-top:0; padding-bottom:0; min-height:75px; margin-top:25"> 
             <li id="li-main" class="nav-item simple-link nav-item-big" data-menu-size="big" data-link-sm="#li-main-sm">
                 <a class="nav-link" href="#" data-menu-size="big">{{.Main}} <span class="sr-only">(current)</span></a>
             </li>
@@ -37,7 +38,9 @@
             <li class="nav-item">
                 <a id="register"  class="nav-link" data-toggle="modal" data-target="#myModal" href="#">{{.Register}}</a>
             <li>
-        </ul>      
+        </ul> 
+
+    </div>     
     </div>
 </nav>
 
