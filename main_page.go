@@ -17,6 +17,7 @@ type Navbar struct {
 	Language string
 	SignIn   string
 	Register string
+	Modals   template.HTML
 }
 
 type Cards struct {
@@ -35,6 +36,29 @@ type MainPage struct {
 	Cards        template.HTML
 }
 
+type NavbarModals struct {
+	dummy string
+}
+
+func executeModals(resources map[string]string, session *Session) template.HTML {
+	var navbarModals NavbarModals
+
+	navbarModalsTemplate, err := template.ParseFiles("public/views/navbar_modals_template.html")
+	if err != nil {
+		log.Println("Err on parsing main page template: ", err)
+		return ""
+	}
+
+	navbarModalsWriter := &bytes.Buffer{}
+	err = navbarModalsTemplate.Execute(navbarModalsWriter, navbarModals)
+	if err != nil {
+		log.Println("Err on executing navbar template: ", err)
+		return ""
+	}
+
+	return template.HTML(navbarModalsWriter.Bytes())
+}
+
 func executeNavbar(resources map[string]string, session *Session) template.HTML {
 	var navbar Navbar
 
@@ -45,6 +69,7 @@ func executeNavbar(resources map[string]string, session *Session) template.HTML 
 	navbar.Language = session.PreferredLanguage
 	navbar.SignIn = resources["SignIn"]
 	navbar.Register = resources["Register"]
+	navbar.Modals = executeModals(resources, session)
 
 	navbarTemplate, err := template.ParseFiles("public/views/nav_template.html")
 	if err != nil {
