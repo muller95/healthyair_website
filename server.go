@@ -125,6 +125,9 @@ func initResources() {
 	languageResources["en"] = make(map[string]string)
 	languageResources["ru"] = make(map[string]string)
 
+	languageResources["en"]["Register"] = "Register"
+	languageResources["ru"]["Register"] = "Зарегистрироваться"
+
 	languageResources["en"]["Password"] = "Password"
 	languageResources["ru"]["Password"] = "Пароль"
 

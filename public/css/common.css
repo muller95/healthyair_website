@@ -1,5 +1,5 @@
 body {
-    background-color: #CACACA;
+    background-color: #DCDCDC;
 }
 
 .first-control {
@@ -40,7 +40,7 @@ body {
 }
 
 .nav-plain {
-    color: #A0A0A0;
+    color: #DCDCDC;
     margin-top:10
 }
 
@@ -61,22 +61,17 @@ body {
     border-radius: 50px
 }
 
-.ha-active-round {
-    background-color: #5db4e3;
-    height: 50px; 
-    border-radius: 50px
-}
-
 .ha-primary-round-sm {
     background-color: #0F0F0F;
     height: 25px; 
     border-radius: 25px
 }
 
-.ha-active-round-sm {
-    background-color: #5db4e3;
-    height: 25px; 
-    border-radius: 25px
+.ha-primary-btn {
+    background-color: #0F0F0F;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    color: #DCDCDC;
+    border: none;
 }
-
 

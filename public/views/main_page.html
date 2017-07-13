@@ -8,9 +8,14 @@
         <link rel="stylesheet" type="text/css" href="/css/bootstrap-sources/scss/bootstrap.css">    
         <link rel="stylesheet" type="text/css" href="/css/common.css">
         <script src="/scripts/jquery-3.2.1.min.js"></script>
+        <script src="/scripts/jquery.color.js"></script>
         <script src="/css/bootstrap/js/bootstrap.min.js"></script>
         <script>
             $(document).ready( function() {
+                var active_color = "#5db4e3"
+                var primary_color = "#0F0F0F"
+                var color_switch_time = 250;
+
                 $('a[data-menu-size="big"]').click(function(event) {
                     var clicked$ = $(event.target.parentElement);
                     var sm_link$ = $(clicked$.attr("data-link-sm"));
@@ -23,28 +28,16 @@
                     clicked$.addClass("active");
                 });
 
-                $("#enter-img").mouseenter(function(event) {
-                    var img$ = $(event.target);
-                    img$.removeClass("ha-primary-round");
-                    img$.addClass("ha-active-round");
+                $(".ha-primary-round, .ha-primary-round-sm, .ha-primary-btn").mouseenter(function(event) {
+                    $(event.target).animate({
+                        backgroundColor: active_color
+                    }, color_switch_time);
                 });
 
-                $("#enter-img").mouseleave(function(event) {
-                    var img$ = $(event.target);
-                    img$.removeClass("ha-active-round");
-                    img$.addClass("ha-primary-round");
-                });
-
-                $("#close-register-img").mouseenter(function(event) {
-                    var img$ = $(event.target);
-                    img$.removeClass("ha-primary-round-sm");
-                    img$.addClass("ha-active-round-sm");
-                });
-
-                $("#close-register-img").mouseleave(function(event) {
-                    var img$ = $(event.target);
-                    img$.removeClass("ha-active-round-sm");
-                    img$.addClass("ha-primary-round-sm");
+                $(".ha-primary-round, .ha-primary-round-sm, .ha-primary-btn").mouseleave(function(event) {
+                     $(event.target).animate({
+                        backgroundColor: primary_color
+                    }, color_switch_time);
                 });
 
                 $('a[data-menu-size="small"]').click(function(event) {
