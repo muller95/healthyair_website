@@ -1,11 +1,11 @@
-<div class="modal fade" id="myModal" role="dialog">
+<div class="modal fade" id="register-modal" role="dialog">
     <div class="modal-dialog">
 
     <!-- Modal content-->
     <div class="modal-content">
         <div class="modal-header">
             <h4 class="modal-title">{{.Registration}}</h4>
-            <a href="#" data-dismiss="modal">
+            <a id="register-modal-dismiss" href="#" data-dismiss="modal">
                 <img id="close-register-img" src="/images/navbar/modals/close.svg"  class="ha-primary-round-sm">
             </a>
         </div>
@@ -13,20 +13,20 @@
         <div class="modal-body">
             <form>
                 <div class="form-group" id="email-div">		
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" class="form-control" placeholder="Email" autofocus>
+                    <label for="register-email">Email:</label>
+                    <input type="email" id="register-email" class="form-control" placeholder="Email" autofocus>
                     <div id="email-error" class="form-control-feedback collapse"></div>
                 </div>
 
                 <div class="form-group" id="name-div">		
-                    <label for="name">{{.Name}}:</label>
-                    <input type="name" id="name" class="form-control" placeholder="{{.Name}}">
+                    <label for="register-name">{{.Name}}:</label>
+                    <input type="name" id="register-name" class="form-control" placeholder="{{.Name}}">
                     <div id="name-error" class="form-control-feedback collapse"></div>
                 </div>
                 
                 <div class="form-group" id="password-div">		
-                    <label class="form-control-label" for="password">{{.Password}}:</label>
-                    <input type="password" id="password" class="form-control" placeholder="{{.Password}}">
+                    <label class="form-control-label" for="register-password">{{.Password}}:</label>
+                    <input type="password" id="register-password" class="form-control" placeholder="{{.Password}}">
                     <div id="password-error" class="form-control-feedback collapse"></div>
                 </div>
 

@@ -84,11 +84,7 @@ func requestHandler(ctx *fasthttp.RequestCtx) {
 		break
 
 	case "/register":
-		registerForm(ctx, language)
-		break
-
-	case "/register/enter":
-		registerEnter(ctx)
+		Register(ctx, &session)
 		break
 
 	case "/authorize":
@@ -204,6 +200,21 @@ func initResources() {
 
 	languageResources["en"]["Registration"] = "Registration"
 	languageResources["ru"]["Registration"] = "Регистрация"
+
+	languageResources["en"]["EmptyEmail"] = "Enter your email, please."
+	languageResources["ru"]["EmptyEmail"] = "Введите свой email, пожалуйста."
+
+	languageResources["en"]["InvalidEmail"] = "Enter valid email, please."
+	languageResources["ru"]["InvalidEmail"] = "Введите корректный email, пожалуйста."
+
+	languageResources["en"]["EmptyName"] = "Enter your name, please."
+	languageResources["ru"]["EmptyName"] = "Ввеедите ваше имя, пожалуйста."
+
+	languageResources["en"]["EmptyPassword"] = "Enter password, please."
+	languageResources["ru"]["EmptyPassword"] = "Введите пароль, пожалуйста."
+
+	languageResources["en"]["WeakPassword"] = "Your password is too weak."
+	languageResources["ru"]["WeakPassword"] = "Ваш пароль слишком слабый."
 }
 
 func main() {

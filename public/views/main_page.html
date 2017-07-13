@@ -65,6 +65,20 @@
                     alert('here');
                     return false;
                 });
+
+                $("#register").click(function() {
+                    $.post("/register", {
+                        email: $("#register-email").val(),
+                        name: $("#register-name").val(),
+                        password: $("#register-password").val()
+                    }, function (data) {
+                        alert(data);
+                    });
+                })
+
+                $("#register-modal-dismiss").click(function() {
+                    $("#register-email, #register-name, #register-password").val("");
+                }); 
             });
         </script>
     </head>
