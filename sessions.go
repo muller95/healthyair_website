@@ -96,7 +96,6 @@ func SessionGet(sid string) (Session, RestCode) {
 	session.PreferredLanguage = resp.Tuples()[0][3].(string)
 	session.EndTime = int64(resp.Tuples()[0][4].(uint64))
 
-	log.Println(session)
 	if time.Now().Unix() > session.EndTime {
 		SessionDelete(sid)
 		return session, SessionExpired

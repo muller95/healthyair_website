@@ -11,6 +11,43 @@
         <script src="/scripts/jquery.color.js"></script>
         <script src="/css/bootstrap/js/bootstrap.min.js"></script>
         <script>
+            function set_danger(name, message, type) {
+                var group = `#${type}-${name}-div`
+                var textbox = `#${type}-${name}`
+                var error = `#${type}-${name}-error`
+
+                $(group).addClass("has-danger");
+                $(textbox).addClass("form-control-danger");
+                $(group).removeClass("has-success");
+                $(textbox).removeClass("form-control-success");
+                $(error).text(message).removeClass("collapse");
+            }
+
+            function set_success(name, type) {
+                var group = `#${type}-${name}-div`
+                var textbox = `#${type}-${name}`
+                var error = `#${type}-${name}-error`
+
+                $(group).removeClass("has-danger");
+                $(textbox).removeClass("form-control-danger");
+                $(group).addClass("has-success");
+                $(textbox).addClass("form-control-success");
+                $(error).text("").addClass("collapse");
+            }
+
+            function reset_group(name, type) {
+                var group = `#${type}-${name}-div`
+                var textbox = `#${type}-${name}`
+                var error = `#${type}-${name}-error`
+
+                $(textbox).val("");
+                $(group).removeClass("has-danger");
+                $(textbox).removeClass("form-control-danger");
+                $(group).removeClass("has-success");
+                $(textbox).removeClass("form-control-success");
+                $(error).text("").addClass("collapse");
+            }
+
             $(document).ready( function() {
                 var active_color = "#5db4e3"
                 var primary_color = "#0F0F0F"
@@ -72,12 +109,30 @@
                         name: $("#register-name").val(),
                         password: $("#register-password").val()
                     }, function (data) {
-                        alert(data);
+                        var obj = $.parseJSON(data);
+                        if (obj.email_result == "err")
+                            set_danger("email", obj.email_message, "register");
+                        else
+                            set_success("email", "register");
+
+                        if (obj.name_result == "err")
+                            set_danger("name", obj.name_message, "register");
+                        else
+                            set_success("name", "register");
+
+                        if (obj.password_result == "err") 
+                            set_danger("password", obj.password_message, "register");
+                        else
+                            set_success("password", "register");
+                        
+                        
                     });
                 })
 
                 $("#register-modal-dismiss").click(function() {
-                    $("#register-email, #register-name, #register-password").val("");
+                    reset_group("email", "register");
+                    reset_group("name", "register");
+                    reset_group("password", "register");
                 }); 
             });
         </script>
