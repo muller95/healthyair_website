@@ -75,3 +75,46 @@ body {
     border: none;
 }
 
+.ha-active-btn {
+    background-color: #5db4e3;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    color: #DCDCDC;
+    border: none;
+}
+
+.ha-btn {
+    padding: 0.5rem;
+}
+
+.ha-btn-sm {
+    padding: 0.3rem;
+}
+
+.ha-btn,
+.ha-btn-sm {
+    border: none;
+    border-radius: 0.5rem;
+    display: block;
+    margin: 0 auto;
+}
+
+.ha-btn-sm {
+    font-size: 16;
+}
+
+.ha-primary-btn-sm {
+    background-color: #0F0F0F;
+    
+    border-radius: 0.5rem;
+    color: #DCDCDC;
+    border: none;
+    
+}
+
+.ha-active-btn-sm {
+    background-color: #5db4e3;
+    color: #DCDCDC;
+    vertical-align: middle;
+}
+
