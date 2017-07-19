@@ -52,6 +52,7 @@
                 var active_color = "#5db4e3"
                 var primary_color = "#0F0F0F"
                 var mouse_on_color = "#DCDCDC"
+                var text_color = "#DCDCDC"
                 var color_switch_time = 100;
 
                 $('a[data-menu-size="big"]').click(function(event) {
@@ -69,18 +70,25 @@
                  $(".ha-btn, .ha-btn-sm").mouseenter(function(event) {
                     $(event.target).animate({
                         backgroundColor: mouse_on_color
-                    }, color_switch_time);
+                    }, {queue: false, duration: color_switch_time});
+                    $(event.target).animate({
+                        color: "black"
+                    }, {queue: false, duration: color_switch_time});
                 });
 
                 $(".ha-btn, .ha-btn-sm").mouseleave(function(event) {
                     if ($(event.target).hasClass("ha-primary"))
                         $(event.target).animate({
                             backgroundColor: primary_color
-                        }, color_switch_time);
+                        }, {queue: false, duration: color_switch_time});
                     else if ($(event.target).hasClass("ha-active"))
                         $(event.target).animate({
                             backgroundColor: active_color
-                        }, color_switch_time);
+                        }, {queue: false, duration: color_switch_time});
+
+                    $(event.target).animate({
+                        color: text_color
+                    }, {queue: false, duration: color_switch_time});
                 });
 
                 $(".ha-primary-round, .ha-primary-round-sm, .ha-primary-btn").mouseenter(function(event) {
