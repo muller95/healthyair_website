@@ -112,3 +112,18 @@ body {
     background-color: #5db4e3;
 }
 
+.ha-controls-group > .ha-btn-sm:last-child, 
+.ha-controls-group > .ha-btn:last-child {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
+
+.ha-controls-group > .ha-btn-sm:first-child, 
+.ha-controls-group > .ha-btn:first-child {
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
