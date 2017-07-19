@@ -97,24 +97,18 @@ body {
     border-radius: 0.5rem;
     display: block;
     margin: 0 auto;
+    color: #DCDCDC;
 }
 
 .ha-btn-sm {
     font-size: 16;
 }
 
-.ha-primary-btn-sm {
+.ha-primary {
     background-color: #0F0F0F;
-    
-    border-radius: 0.5rem;
-    color: #DCDCDC;
-    border: none;
-    
 }
 
-.ha-active-btn-sm {
+.ha-active {
     background-color: #5db4e3;
-    color: #DCDCDC;
-    vertical-align: middle;
 }
 
