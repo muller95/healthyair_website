@@ -67,40 +67,36 @@
                     clicked$.addClass("active");
                 });
 
-                 $(".ha-btn, .ha-btn-sm").mouseenter(function(event) {
-                    $(event.target).animate({
+                 $(".ha-btn, .ha-btn-sm, .ha-img-btn").mouseenter(function(event) {
+                    var target$ = $(event.target)
+                    target$.animate({
                         backgroundColor: mouse_on_color
                     }, {queue: false, duration: color_switch_time});
-                    $(event.target).animate({
+                    target$.animate({
                         color: "black"
                     }, {queue: false, duration: color_switch_time});
+
+                    if (target$.hasClass("ha-img-btn"))
+                        target$.attr("src", target$.attr("data-img-second"));                    
                 });
 
-                $(".ha-btn, .ha-btn-sm").mouseleave(function(event) {
-                    if ($(event.target).hasClass("ha-primary"))
-                        $(event.target).animate({
+                $(".ha-btn, .ha-btn-sm, .ha-img-btn").mouseleave(function(event) {
+                    var target$ = $(event.target)
+                    if (target$.hasClass("ha-primary"))
+                        target$.animate({
                             backgroundColor: primary_color
                         }, {queue: false, duration: color_switch_time});
-                    else if ($(event.target).hasClass("ha-active"))
-                        $(event.target).animate({
+                    else if (target$.hasClass("ha-active"))
+                        target$.animate({
                             backgroundColor: active_color
                         }, {queue: false, duration: color_switch_time});
 
-                    $(event.target).animate({
+                    target$.animate({
                         color: text_color
                     }, {queue: false, duration: color_switch_time});
-                });
 
-                $(".ha-primary-round, .ha-primary-round-sm, .ha-primary-btn").mouseenter(function(event) {
-                    $(event.target).animate({
-                        backgroundColor: active_color
-                    }, color_switch_time);
-                });
-
-                $(".ha-primary-round, .ha-primary-round-sm, .ha-primary-btn").mouseleave(function(event) {
-                     $(event.target).animate({
-                        backgroundColor: primary_color
-                    }, color_switch_time);
+                    if (target$.hasClass("ha-img-btn"))
+                        target$.attr("src", target$.attr("data-img-first"));    
                 });
 
                 $('a[data-menu-size="small"]').click(function(event) {
