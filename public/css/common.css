@@ -97,8 +97,6 @@ body {
 .ha-btn-sm {
     border: none;
     border-radius: 0.5rem;
-    display: block;
-    margin: 0 0 0 auto;
     color: #DCDCDC;
 }
 
@@ -114,10 +112,21 @@ body {
 
 .ha-primary {
     background-color: #0F0F0F;
+    color: #DCDCDC
 }
 
 .ha-active {
     background-color: #5db4e3;
+}
+
+.ha-mouseenter {
+    background-color: #DCDCDC;
+    color: #0F0F0F
+}
+
+.ha-pressed {
+    background-color: #509bc4;
+    color: #DCDCDC
 }
 
 .ha-round-big {
@@ -130,18 +139,42 @@ body {
     border-radius: 25px
 }
 
-.ha-controls-group > .ha-btn-sm:last-child, 
-.ha-controls-group > .ha-btn:last-child {
+.ha-controls-group,
+.ha-controls-group-vertical {
+    position: relative;
+    display: inline-flex;
+    vertical-align: middle;
+}
+
+.ha-controls-group > .ha-btn,
+.ha-controls-group > .ha-btn-sm {
+    flex: 0 1 auto;
+}
+
+.ha-controls-group-vertical > .ha-btn-sm:last-child, 
+.ha-controls-group-vertical > .ha-btn:last-child {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
 }
 
-.ha-controls-group > .ha-btn-sm:first-child, 
-.ha-controls-group > .ha-btn:first-child {
+.ha-controls-group-vertical {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.ha-controls-group-vertical > .ha-btn-sm, 
+.ha-controls-group-vartical > .ha-btn {
+    width: 100%
+}
+
+.ha-controls-group-vertical > .ha-btn-sm:first-child, 
+.ha-controls-group-vartical > .ha-btn:first-child {
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
+

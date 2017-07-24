@@ -8,7 +8,8 @@
         <link rel="stylesheet" type="text/css" href="/css/bootstrap-sources/scss/bootstrap.css">    
         <link rel="stylesheet" type="text/css" href="/css/common.css">
         <script src="/scripts/jquery-3.2.1.min.js"></script>
-        <script src="/scripts/jquery.color.js"></script>
+        <!--<script src="/scripts/jquery.color.js"></script>-->
+        <script src="/scripts/jquery-ui.min.js"></script>
         <script src="/css/bootstrap/js/bootstrap.min.js"></script>
         <script>
             function set_danger(name, message, type) {
@@ -52,6 +53,7 @@
                 var active_color = "#5db4e3"
                 var primary_color = "#0F0F0F"
                 var mouse_on_color = "#DCDCDC"
+                var mouse_down_color = "#509bc4";
                 var text_color = "#DCDCDC"
                 var color_switch_time = 100;
 
@@ -68,35 +70,36 @@
                 });
 
                  $(".ha-btn, .ha-btn-sm, .ha-img-btn").mouseenter(function(event) {
-                    var target$ = $(event.target)
-                    target$.animate({
-                        backgroundColor: mouse_on_color
-                    }, {queue: false, duration: color_switch_time});
-                    target$.animate({
-                        color: "black"
-                    }, {queue: false, duration: color_switch_time});
+                    var target$ = $(event.target);
+                    target$.switchClass("", "ha-mouseenter", {duration: color_switch_time})
 
                     if (target$.hasClass("ha-img-btn"))
                         target$.attr("src", target$.attr("data-img-second"));                    
                 });
 
                 $(".ha-btn, .ha-btn-sm, .ha-img-btn").mouseleave(function(event) {
-                    var target$ = $(event.target)
-                    if (target$.hasClass("ha-primary"))
-                        target$.animate({
-                            backgroundColor: primary_color
-                        }, {queue: false, duration: color_switch_time});
-                    else if (target$.hasClass("ha-active"))
-                        target$.animate({
-                            backgroundColor: active_color
-                        }, {queue: false, duration: color_switch_time});
+                    var target$ = $(event.target);
+                    target$.removeClass("ha-pressed");                    
+                    target$.switchClass("ha-mouseenter", "", {duration: color_switch_time});
+                    
+                    if (target$.hasClass("ha-img-btn"))
+                        target$.attr("src", target$.attr("data-img-first"));   
+                });
 
-                    target$.animate({
-                        color: text_color
-                    }, {queue: false, duration: color_switch_time});
+                $(".ha-btn, .ha-btn-sm, .ha-img-btn").mousedown(function(event) {
+                    var target$ = $(event.target);
+                    target$.addClass("ha-pressed");
 
                     if (target$.hasClass("ha-img-btn"))
-                        target$.attr("src", target$.attr("data-img-first"));    
+                        target$.attr("src", target$.attr("data-img-first"));                    
+                });
+
+                $(".ha-btn, .ha-btn-sm, .ha-img-btn").mouseup(function(event) {
+                    var target$ = $(event.target);
+                    target$.removeClass("ha-pressed");
+
+                    if (target$.hasClass("ha-img-btn"))
+                        target$.attr("src", target$.attr("data-img-first"));                    
                 });
 
                 $('a[data-menu-size="small"]').click(function(event) {
