@@ -225,6 +225,11 @@ func initResources() {
 
 	languageResources["en"]["EmailExists"] = "This email alredy registered."
 	languageResources["ru"]["EmailExists"] = "Этот email уже зарегистрирован."
+
+	languageResources["en"]["RegisterHint"] = "The password must contains from seven symbols" +
+		", and contains at least one capital letter and one digit."
+	languageResources["ru"]["RegisterHint"] = "Пароль должен состоять как минимум из семи букв," +
+		", содержать как минимум одну цифру и одну заглавную букву."
 }
 
 func main() {
