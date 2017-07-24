@@ -201,6 +201,13 @@ func initResources() {
 	languageResources["en"]["Registration"] = "Registration"
 	languageResources["ru"]["Registration"] = "Регистрация"
 
+	languageResources["en"]["RegisterOK"] = "You have registered successfully."
+	languageResources["ru"]["RegisterOK"] = "Вы успешно зарегистрировались."
+
+	languageResources["en"]["RegisterFail"] = "Some error occured, try register again later."
+	languageResources["ru"]["RegisterFail"] = "Произошла какая-то ошибка," +
+		"попробуйте зарегистрироваться позже."
+
 	languageResources["en"]["EmptyEmail"] = "Enter your email, please."
 	languageResources["ru"]["EmptyEmail"] = "Введите свой email, пожалуйста."
 
@@ -215,6 +222,9 @@ func initResources() {
 
 	languageResources["en"]["WeakPassword"] = "Your password is too weak."
 	languageResources["ru"]["WeakPassword"] = "Ваш пароль слишком слабый."
+
+	languageResources["en"]["EmailExists"] = "This email alredy registered."
+	languageResources["ru"]["EmailExists"] = "Этот email уже зарегистрирован."
 }
 
 func main() {

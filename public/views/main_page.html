@@ -150,7 +150,10 @@
                         else
                             set_success("password", "register");
                         
-                        
+                        if (obj.result == "ok")
+                            $("#register-success").css("display", "");
+                    }).fail(function () {
+                        $("#register-danger").css("display", "");
                     });
                 })
 
@@ -158,6 +161,8 @@
                     reset_group("email", "register");
                     reset_group("name", "register");
                     reset_group("password", "register");
+                    $("#register-success").css("display", "none");
+                    $("#register-danger").css("display", "none");
                 }); 
             });
         </script>

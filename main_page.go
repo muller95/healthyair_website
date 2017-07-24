@@ -41,6 +41,8 @@ type NavbarModals struct {
 	Name         string
 	Password     string
 	Register     string
+	RegisterOK   string
+	RegisterFail string
 	Cancel       string
 }
 
@@ -51,6 +53,8 @@ func executeModals(resources map[string]string, session *Session) template.HTML 
 	navbarModals.Name = resources["Name"]
 	navbarModals.Password = resources["Password"]
 	navbarModals.Register = resources["Register"]
+	navbarModals.RegisterOK = resources["RegisterOK"]
+	navbarModals.RegisterFail = resources["RegisterFail"]
 	navbarModals.Cancel = resources["Cancel"]
 
 	navbarModalsTemplate, err := template.ParseFiles("public/views/navbar_modals_template.html")
