@@ -1,48 +1,82 @@
+<!-- Register modal -->
 <div class="modal fade" id="register-modal" role="dialog">
     <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-        <div class="modal-header">
-            <h4 class="modal-title">{{.Registration}}</h4>
-            <a id="register-modal-dismiss" href="#">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{.Registration}}</h4>
                 <img src="/images/navbar/modals/close.svg"  data-dismiss="modal" class="ha-img-btn ha-primary ha-round-sm" data-img-first="/images/navbar/modals/close.svg" data-img-second="/images/navbar/modals/close_black.svg">
-            </a>
-        </div>
-       
-        <div class="modal-body">
-            <form>
-                <div id="register-success" class="alert alert-success" style="display:none">
-                    <strong>{{.RegisterOK}}</strong>
-                </div>
-                <div id="register-danger" class="alert alert-danger" style="display:none">
-                    <strong>{{.RegisterFail}}</strong>
-                </div>
-                <div class="form-group" id="register-email-div">		
-                    <label class="form-control-label" for="register-email">Email:</label>
-                    <input type="email" id="register-email" class="form-control" placeholder="Email" autofocus>
-                    <div id="register-email-error" class="form-control-feedback collapse"></div>
-                </div>
+            </div>
+        
+            <div class="modal-body">
+                <form>
+                    <div id="register-success" class="alert alert-success" style="display:none">
+                        <strong>{{.RegisterOK}}</strong>
+                    </div>
+                    <div id="register-danger" class="alert alert-danger" style="display:none">
+                        <strong>{{.RegisterFail}}</strong>
+                    </div>
+                    <div class="form-group" id="register-email-div">		
+                        <label class="form-control-label" for="register-email">Email:</label>
+                        <input type="email" id="register-email" class="form-control" placeholder="Email" autofocus>
+                        <div id="register-email-error" class="form-control-feedback collapse"></div>
+                    </div>
 
-                <div class="form-group" id="register-name-div">		
-                    <label class="form-control-label" for="register-name">{{.Name}}:</label>
-                    <input type="name" id="register-name" class="form-control" placeholder="{{.Name}}">
-                    <div id="register-name-error" class="form-control-feedback collapse"></div>
-                </div>
-                
-                <div class="form-group" id="register-password-div">		
-                    <label class="form-control-label" for="register-password">{{.Password}}:</label>
-                    <input type="password" id="register-password" class="form-control" placeholder="{{.Password}}">
-                    <div id="register-password-error" class="form-control-feedback collapse"></div>
-                    <small class="form-text text-muted">{{.RegisterHint}}</small>
-                </div>
-            </form>
-        </div>
-       
-        <div class="modal-footer">
-            <button id="register" type="button" class="ha-btn ha-primary" style="width:100%">{{.Register}}</button>
+                    <div class="form-group" id="register-name-div">		
+                        <label class="form-control-label" for="register-name">{{.Name}}:</label>
+                        <input type="name" id="register-name" class="form-control" placeholder="{{.Name}}">
+                        <div id="register-name-error" class="form-control-feedback collapse"></div>
+                    </div>
+                    
+                    <div class="form-group" id="register-password-div">		
+                        <label class="form-control-label" for="register-password">{{.Password}}:</label>
+                        <input type="password" id="register-password" class="form-control" placeholder="{{.Password}}">
+                        <div id="register-password-error" class="form-control-feedback collapse"></div>
+                        <small class="form-text text-muted">{{.RegisterHint}}</small>
+                    </div>
+                </form>
+            </div>
+        
+            <div class="modal-footer">
+                <button id="register" type="button" class="ha-btn ha-primary" style="width:100%">{{.Register}}</button>
+            </div>
         </div>
     </div>
+</div>
 
+<!-- Login modal -->
+<div class="modal fade" id="login-modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{.Authorization}}</h4>
+                <img src="/images/navbar/modals/close.svg"  data-dismiss="modal" class="ha-img-btn ha-primary ha-round-sm" data-img-first="/images/navbar/modals/close.svg" data-img-second="/images/navbar/modals/close_black.svg">
+            </div>
+        
+            <div class="modal-body">
+                <form>
+                    <div id="login-success" class="alert alert-success" style="display:none">
+                        <strong>{{.RegisterOK}}</strong>
+                    </div>
+                    <div id="login-danger" class="alert alert-danger" style="display:none">
+                        <strong>{{.RegisterFail}}</strong>
+                    </div>
+                    <div class="form-group" id="login-email-div">		
+                        <label class="form-control-label" for="login-email">Email:</label>
+                        <input type="email" id="login-email" class="form-control" placeholder="Email" autofocus>
+                        <div id="login-email-error" class="form-control-feedback collapse"></div>
+                    </div>
+                    
+                    <div class="form-group" id="login-password-div">		
+                        <label class="form-control-label" for="login-password">{{.Password}}:</label>
+                        <input type="password" id="login-password" class="form-control" placeholder="{{.Password}}">
+                        <div id="login-password-error" class="form-control-feedback collapse"></div>
+                    </div>
+                </form>
+            </div>
+        
+            <div class="modal-footer">
+                <button id="login" type="button" class="ha-btn ha-primary" style="width:100%">{{.SignIn}}</button>
+            </div>
+        </div>
     </div>
 </div>

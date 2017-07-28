@@ -230,6 +230,9 @@ func initResources() {
 		", and contains at least one capital letter and one digit."
 	languageResources["ru"]["RegisterHint"] = "Пароль должен состоять как минимум из семи букв," +
 		", содержать как минимум одну цифру и одну заглавную букву."
+
+	languageResources["en"]["Authorization"] = "Authorization"
+	languageResources["ru"]["Authorization"] = "Авторизация"
 }
 
 func main() {

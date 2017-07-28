@@ -37,14 +37,15 @@ type MainPage struct {
 }
 
 type NavbarModals struct {
-	Registration string
-	Name         string
-	Password     string
-	Register     string
-	RegisterHint string
-	RegisterOK   string
-	RegisterFail string
-	Cancel       string
+	Registration  string
+	Name          string
+	Password      string
+	Register      string
+	RegisterHint  string
+	RegisterOK    string
+	RegisterFail  string
+	Authorization string
+	SignIn        string
 }
 
 func executeModals(resources map[string]string, session *Session) template.HTML {
@@ -57,7 +58,8 @@ func executeModals(resources map[string]string, session *Session) template.HTML 
 	navbarModals.RegisterHint = resources["RegisterHint"]
 	navbarModals.RegisterOK = resources["RegisterOK"]
 	navbarModals.RegisterFail = resources["RegisterFail"]
-	navbarModals.Cancel = resources["Cancel"]
+	navbarModals.Authorization = resources["Authorization"]
+	navbarModals.SignIn = resources["SignIn"]
 
 	navbarModalsTemplate, err := template.ParseFiles("public/views/navbar_modals_template.html")
 	if err != nil {
