@@ -34,10 +34,10 @@ func SessionStart(language string) (Session, RestCode) {
 	session.PreferredLanguage = language
 	session.EndTime = time.Now().Unix() + sessionLifeTime
 
-	resp, err := healthyairTARANTOOLclient.Insert(sessionsSpace, []interface{}{str, 0, false, language,
+	_, err = healthyairTARANTOOLclient.Insert(sessionsSpace, []interface{}{str, 0, false, language,
 		time.Now().Unix() + sessionLifeTime})
 	if err != nil {
-		log.Printf("Err insert session: %v %v\n", err, resp.Code)
+		log.Printf("Err insert session: %v\n", err)
 		return session, InternalServerError
 	}
 	return session, Ok

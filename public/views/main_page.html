@@ -134,6 +134,7 @@
                         name: $("#register-name").val(),
                         password: $("#register-password").val()
                     }, function (data) {
+                        alert(data);
                         var obj = $.parseJSON(data);
                         if (obj.email_result == "err")
                             set_danger("email", obj.email_message, "register");
